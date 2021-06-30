@@ -1,4 +1,4 @@
-﻿using Jr.Backend.Pessoa.Infrastructure.Repository.MongoDb.Context;
+﻿using Jr.Backend.Pessoa.Infrastructure.Repository.MongoDb.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
