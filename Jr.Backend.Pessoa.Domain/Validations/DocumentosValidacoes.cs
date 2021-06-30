@@ -1,5 +1,5 @@
 ﻿using FluentValidation;
-using Jr.Backend.Pessoa.Domain.Validations.Core;
+using Jr.Backend.Libs.Domain.Core.Validations;
 using Jr.Backend.Pessoa.Domain.ValueObject;
 
 namespace Jr.Backend.Pessoa.Domain.Validations

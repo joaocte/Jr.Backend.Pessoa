@@ -1,8 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using Jr.Backend.Libs.Domain.ValueObject;
+using System.Collections.Generic;
 
 namespace Jr.Backend.Pessoa.Domain.ValueObject
 {
-    public class NomeCompleto : Core.ValueObject
+    public class NomeCompleto : GenericValueObject
     {
         public string Nome { get; private set; }
         public string Sobrenome { get; private set; }

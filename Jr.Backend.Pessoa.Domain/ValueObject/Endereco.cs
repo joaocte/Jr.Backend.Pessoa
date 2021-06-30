@@ -1,8 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using Jr.Backend.Libs.Domain.ValueObject;
+using System.Collections.Generic;
 
 namespace Jr.Backend.Pessoa.Domain.ValueObject
 {
-    public class Endereco : Core.ValueObject
+    public class Endereco : GenericValueObject
     {
         public string Logradouro { get; private set; }
         public string Bairro { get; private set; }
