@@ -11,11 +11,6 @@ namespace Jr.Backend.Pessoa.Domain.Validations
                 .NotNull()
                 .NotEmpty()
                 .WithMessage("O Nome deve ser informado");
-
-            RuleFor(p => p.Sobrenome)
-                .NotNull()
-                .NotEmpty()
-                .WithMessage("Sobrenome deve ser informado");
         }
     }
 }
