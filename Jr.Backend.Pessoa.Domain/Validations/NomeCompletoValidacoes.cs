@@ -8,11 +8,13 @@ namespace Jr.Backend.Pessoa.Domain.Validations
         public NomeCompletoValidacoes()
         {
             RuleFor(p => p.Nome)
-                .NotNull().NotEmpty()
+                .NotNull()
+                .NotEmpty()
                 .WithMessage("O Nome deve ser informado");
 
             RuleFor(p => p.Sobrenome)
-                .NotNull().NotEmpty()
+                .NotNull()
+                .NotEmpty()
                 .WithMessage("Sobrenome deve ser informado");
         }
     }

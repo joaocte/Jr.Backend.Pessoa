@@ -9,9 +9,15 @@ namespace Jr.Backend.Pessoa.Domain.Validations
         public DocumentosValidacoes()
         {
             RuleFor(p => p.Rg)
-                .NotEmpty().NotNull().WithMessage("Rg deve ser informado");
+                .NotEmpty()
+                .NotNull()
+                .WithMessage("Rg deve ser informado");
 
-            RuleFor(p => p.Cpf).CpfValido();
+            RuleFor(p => p.Cpf)
+                .NotEmpty()
+                .NotNull()
+                .CpfValido()
+                .WithMessage("Cpf deve ser informado ou é Inválido");
         }
     }
 }

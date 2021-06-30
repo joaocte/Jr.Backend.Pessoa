@@ -8,6 +8,23 @@ namespace Jr.Backend.Pessoa.Domain.ValueObject
         public string Rg { get; private set; }
         public string TituloEleitoral { get; set; }
 
+        public Documentos(string cpf, string rg, string tituloEleitoral)
+        {
+            Cpf = cpf;
+            Rg = rg;
+            TituloEleitoral = tituloEleitoral;
+        }
+
+        public Documentos(string cpf)
+        {
+            Cpf = cpf;
+        }
+
+        public Documentos(string cpf, string rg) : this(cpf)
+        {
+            Rg = rg;
+        }
+
         protected override IEnumerable<object> GetEqualityComponents()
         {
             yield return Cpf;

@@ -1,9 +1,4 @@
 ﻿using Jr.Backend.Pessoa.Domain.ValueObject;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xunit;
 
 namespace Jr.Backend.Pessoa.Tests.Domain.ValueObject
