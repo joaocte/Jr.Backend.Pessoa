@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Jr.Backend.Pessoa.Tests", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jr.Backend.Pessoa.Api", "Jr.Backend.Pessoa.Api\Jr.Backend.Pessoa.Api.csproj", "{77A39E22-BFAF-4CF2-9A12-A6220A08F3A5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jr.Backend.Pessoa.Grpc", "Jr.Backend.Pessoa.Grpc\Jr.Backend.Pessoa.Grpc.csproj", "{3045A4D2-D695-4CFE-BC4F-6B78E61FDAAA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{77A39E22-BFAF-4CF2-9A12-A6220A08F3A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{77A39E22-BFAF-4CF2-9A12-A6220A08F3A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{77A39E22-BFAF-4CF2-9A12-A6220A08F3A5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3045A4D2-D695-4CFE-BC4F-6B78E61FDAAA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3045A4D2-D695-4CFE-BC4F-6B78E61FDAAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3045A4D2-D695-4CFE-BC4F-6B78E61FDAAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3045A4D2-D695-4CFE-BC4F-6B78E61FDAAA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
