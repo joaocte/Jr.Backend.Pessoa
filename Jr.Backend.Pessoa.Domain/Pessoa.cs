@@ -5,10 +5,10 @@ namespace Jr.Backend.Pessoa.Domain
 {
     public class Pessoa
     {
-        public NomeCompleto NomeCompleto { get; private set; }
+        public NomeCompleto NomeCompleto { get; }
 
-        public IList<Endereco> Enderecos { get; private set; }
+        public IList<Endereco> Enderecos { get; }
 
-        public Documentos Documentos { get; set; }
+        public Documentos Documentos { get; }
     }
 }
