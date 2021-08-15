@@ -13,4 +13,8 @@
     <ProjectReference Include="..\Jr.Backend.Pessoa.Domain\Jr.Backend.Pessoa.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Controllers\" />
+  </ItemGroup>
+
 </Project>
