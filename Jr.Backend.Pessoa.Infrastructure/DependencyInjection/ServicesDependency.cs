@@ -1,4 +1,6 @@
-﻿using Jr.Backend.Pessoa.Infrastructure.Repository.MongoDb.Context;
+﻿using Jr.Backend.Pessoa.Domain;
+using Jr.Backend.Pessoa.Infrastructure.Repository.MongoDb;
+using Jr.Backend.Pessoa.Infrastructure.Repository.MongoDb.Context;
 using Jr.Backend.Pessoa.Infrastructure.Repository.MongoDb.Interfaces;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -9,7 +11,7 @@ namespace Jr.Backend.Pessoa.Infrastructure.DependencyInjection
 {
     public static class ServicesDependency
     {
-        public static void AddServiceDependency(this IServiceCollection services)
+        public static void AddServiceDependencyInfrastructure(this IServiceCollection services)
         {
             var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT")?.ToLowerInvariant();
             services.AddScoped<IMongoContext>((p) =>
@@ -22,6 +24,12 @@ namespace Jr.Backend.Pessoa.Infrastructure.DependencyInjection
                                  .Build();
 
                 return new MongoContext(config);
+            });
+
+            services.AddScoped<IPessoaRepository>((p) =>
+            {
+                var mongoContext = p.GetService<IMongoContext>();
+                return new PessoaRepository(mongoContext, typeof(Domain.Pessoa).Name);
             });
         }
     }
