@@ -12,4 +12,9 @@
     <PackageReference Include="Grpc.AspNetCore" Version="2.34.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Jr.Backend.Pessoa.Application\Jr.Backend.Pessoa.Application.csproj" />
+    <ProjectReference Include="..\Jr.Backend.Pessoa.Domain\Jr.Backend.Pessoa.Domain.csproj" />
+  </ItemGroup>
+
 </Project>
