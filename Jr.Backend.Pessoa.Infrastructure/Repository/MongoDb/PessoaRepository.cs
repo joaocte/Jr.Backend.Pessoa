@@ -1,10 +1,6 @@
-﻿using Jr.Backend.Pessoa.Domain;
-using Jr.Backend.Pessoa.Infrastructure.Repository.MongoDb.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Jr.Backend.Libs.Infrastructure.Repository.MongoDb;
+using Jr.Backend.Libs.Infrastructure.Repository.MongoDb.Interfaces;
+using Jr.Backend.Pessoa.Domain;
 
 namespace Jr.Backend.Pessoa.Infrastructure.Repository.MongoDb
 {

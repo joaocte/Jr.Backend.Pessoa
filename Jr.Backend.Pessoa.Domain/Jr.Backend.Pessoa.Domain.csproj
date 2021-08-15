@@ -6,7 +6,7 @@
 
   <ItemGroup>
     <PackageReference Include="FluentValidation" Version="10.2.3" />
-    <PackageReference Include="Jr.Backend.Libs.Domain" Version="1.0.0" />
+    <PackageReference Include="Jr.Backend.Libs.Domain" Version="1.0.1" />
   </ItemGroup>
 
 </Project>

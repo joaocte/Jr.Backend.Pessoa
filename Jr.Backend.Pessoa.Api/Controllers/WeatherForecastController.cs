@@ -21,15 +21,16 @@ namespace Jr.Backend.Pessoa.Api.Controllers
 
         private readonly IPessoaRepository _pessoaRepository;
 
-        public WeatherForecastController(ILogger<WeatherForecastController> logger)
+        public WeatherForecastController(ILogger<WeatherForecastController> logger, IPessoaRepository pessoaRepository)
         {
             _logger = logger;
+            _pessoaRepository = pessoaRepository;
         }
 
         [HttpGet]
         public async Task<IEnumerable<Domain.Pessoa>> Get()
         {
-            return null;
+            return await _pessoaRepository.GetAllAsync();
         }
     }
 }

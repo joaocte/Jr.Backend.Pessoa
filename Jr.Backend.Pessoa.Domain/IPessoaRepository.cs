@@ -1,4 +1,4 @@
-﻿using Jr.Backend.Pessoa.Domain.Interfaces;
+﻿using Jr.Backend.Libs.Domain.Interfaces;
 
 namespace Jr.Backend.Pessoa.Domain
 {
