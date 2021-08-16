@@ -5,8 +5,8 @@ namespace Jr.Backend.Pessoa.Domain.ValueObject
 {
     public class NomeCompleto : GenericValueObject
     {
-        public string Nome { get; private set; }
-        public string Sobrenome { get; private set; }
+        public string Nome { get; }
+        public string Sobrenome { get; }
 
         public NomeCompleto(string nome, string sobrenome)
         {

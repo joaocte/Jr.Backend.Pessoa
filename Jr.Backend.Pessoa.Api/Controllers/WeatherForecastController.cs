@@ -1,8 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Jr.Backend.Pessoa.Domain;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Jr.Backend.Pessoa.Api.Controllers
 {
@@ -17,22 +19,18 @@ namespace Jr.Backend.Pessoa.Api.Controllers
 
         private readonly ILogger<WeatherForecastController> _logger;
 
-        public WeatherForecastController(ILogger<WeatherForecastController> logger)
+        private readonly IPessoaRepository _pessoaRepository;
+
+        public WeatherForecastController(ILogger<WeatherForecastController> logger, IPessoaRepository pessoaRepository)
         {
             _logger = logger;
+            _pessoaRepository = pessoaRepository;
         }
 
         [HttpGet]
-        public IEnumerable<WeatherForecast> Get()
+        public async Task<IEnumerable<Domain.Pessoa>> Get()
         {
-            var rng = new Random();
-            return Enumerable.Range(1, 5).Select(index => new WeatherForecast
-            {
-                Date = DateTime.Now.AddDays(index),
-                TemperatureC = rng.Next(-20, 55),
-                Summary = Summaries[rng.Next(Summaries.Length)]
-            })
-            .ToArray();
+            return await _pessoaRepository.GetAllAsync();
         }
     }
 }
