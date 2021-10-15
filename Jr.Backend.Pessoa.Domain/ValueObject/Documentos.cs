@@ -5,8 +5,8 @@ namespace Jr.Backend.Pessoa.Domain.ValueObject
 {
     public class Documentos : GenericValueObject
     {
-        public string Cpf { get; private set; }
-        public string Rg { get; private set; }
+        public string Cpf { get; }
+        public string Rg { get; }
         public string TituloEleitoral { get; set; }
 
         public Documentos(string cpf, string rg, string tituloEleitoral)
