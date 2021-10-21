@@ -1,5 +1,5 @@
-﻿using Jr.Backend.Libs.Infrastructure.Repository.MongoDb;
-using Jr.Backend.Libs.Infrastructure.Repository.MongoDb.Interfaces;
+﻿using Jr.Backend.Libs.Infrastructure.Abstractions.Interfaces;
+using Jr.Backend.Libs.Infrastructure.Repository.MongoDb;
 using Jr.Backend.Pessoa.Domain;
 
 namespace Jr.Backend.Pessoa.Infrastructure.Repository.MongoDb

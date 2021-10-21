@@ -1,5 +1,4 @@
-﻿using Jr.Backend.Libs.Domain.Interfaces;
-using Jr.Backend.Libs.Domain.Interfaces.Repository;
+﻿using Jr.Backend.Libs.Domain.Abstractions.Interfaces.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;

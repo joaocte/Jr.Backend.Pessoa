@@ -1,4 +1,4 @@
-﻿using Jr.Backend.Libs.Domain.ValueObject;
+﻿using Jr.Backend.Libs.Domain.Abstractions.ValueObject;
 using System.Collections.Generic;
 
 namespace Jr.Backend.Pessoa.Domain.ValueObject
