@@ -1,14 +1,11 @@
 using Jr.Backend.Pessoa.Application.DependencyInjection;
-using Jr.Backend.Pessoa.Application.Handlers;
 using Jr.Backend.Pessoa.Infrastructure.DependencyInjection;
-using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
-using System.Reflection;
 
 namespace Jr.Backend.Pessoa.Api
 {
@@ -31,7 +28,6 @@ namespace Jr.Backend.Pessoa.Api
             });
             services.AddServiceDependencyApplication();
             services.AddServiceDependencyInfrastructure();
-            services.AddMediatR(typeof(CadastrarPessoaHandler).GetTypeInfo().Assembly);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

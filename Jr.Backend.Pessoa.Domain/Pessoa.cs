@@ -16,6 +16,14 @@ namespace Jr.Backend.Pessoa.Domain
             Id = Guid.NewGuid();
         }
 
+        public Pessoa(Guid id, NomeCompleto nomeCompleto, IList<Endereco> enderecos, Documentos documentos)
+        {
+            NomeCompleto = nomeCompleto;
+            Enderecos = enderecos;
+            Documentos = documentos;
+            Id = id;
+        }
+
         public Guid Id { get; set; }
         public NomeCompleto NomeCompleto { get; }
 

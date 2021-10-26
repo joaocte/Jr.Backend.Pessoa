@@ -6,8 +6,9 @@
 
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="10.1.1" />
-    <PackageReference Include="Jr.Backend.Libs.Utilities" Version="1.0.0-beta-9" />
+    <PackageReference Include="Jr.Backend.Libs.Utilities" Version="1.0.0-beta-11" />
     <PackageReference Include="MediatR" Version="9.0.0" />
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="9.0.0" />
   </ItemGroup>
 
   <ItemGroup>

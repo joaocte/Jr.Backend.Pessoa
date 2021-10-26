@@ -30,14 +30,20 @@ namespace Jr.Backend.Pessoa.Api.Controllers
 
         // PUT api/<PessoaController>/5
         [HttpPut("{id}")]
-        public void Put(Guid id, [FromBody] string value)
+        public Task<AtualizarPessoaResponse> Put(Guid id, [FromBody] PessoaResquest request, [FromServices] IMediator mediator)
         {
+            AtualizarPessoaRequest command = new()
+            { Documentos = request.Documentos, Enderecos = request.Enderecos, Id = id, NomeCompleto = request.NomeCompleto };
+
+            return mediator.Send(command);
         }
 
         // DELETE api/<PessoaController>/5
         [HttpDelete("{id}")]
-        public void Delete(Guid id)
+        public Task Delete(Guid id, [FromServices] IMediator mediator)
         {
+            var command = new DeletarPessoaRequest(id);
+            return Task.FromResult(mediator.Send(command));
         }
     }
 }
