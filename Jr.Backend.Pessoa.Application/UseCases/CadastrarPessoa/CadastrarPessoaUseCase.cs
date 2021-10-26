@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Jr.Backend.Libs.Domain.Abstractions.Interfaces.Repository;
+using Jr.Backend.Libs.Utilities;
 using Jr.Backend.Pessoa.Domain.Commands.Requests;
 using Jr.Backend.Pessoa.Domain.Commands.Responses;
 using Jr.Backend.Pessoa.Infrastructure.Interfaces;
@@ -32,7 +33,7 @@ namespace Jr.Backend.Pessoa.Application.UseCases.CadastrarPessoa
 
             return new CadastrarPessoaRespose
             {
-                Id = pessoa.Id
+                Id = pessoaEntity.Id.ToGuid()
             };
         }
 
@@ -42,27 +43,17 @@ namespace Jr.Backend.Pessoa.Application.UseCases.CadastrarPessoa
             {
                 if (disposing)
                 {
-                    // TODO: dispose managed state (managed objects)
+                    pessoaRepository?.Dispose();
+                    unitOfWork?.Dispose();
                 }
 
-                // TODO: free unmanaged resources (unmanaged objects) and override finalizer
-                // TODO: set large fields to null
                 disposedValue = true;
             }
         }
 
-        // // TODO: override finalizer only if 'Dispose(bool disposing)' has code to free unmanaged resources
-        // ~CadastrarPessoaUseCase()
-        // {
-        //     // Do not change this code. Put cleanup code in 'Dispose(bool disposing)' method
-        //     Dispose(disposing: false);
-        // }
-
         public void Dispose()
         {
-            // Do not change this code. Put cleanup code in 'Dispose(bool disposing)' method
             Dispose(disposing: true);
-            System.GC.SuppressFinalize(this);
         }
     }
 }
