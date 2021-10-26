@@ -10,10 +10,6 @@ namespace Jr.Backend.Pessoa.Domain.ValueObject
         public string Sobrenome { get; }
 
         [JsonConstructor]
-        public NomeCompleto()
-        {
-
-        }
         public NomeCompleto(string nome, string sobrenome)
         {
             Nome = nome;

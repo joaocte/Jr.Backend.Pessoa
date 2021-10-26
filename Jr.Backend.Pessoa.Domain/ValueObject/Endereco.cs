@@ -17,21 +17,6 @@ namespace Jr.Backend.Pessoa.Domain.ValueObject
         public string Complemento { get; }
 
         [JsonConstructor]
-        public Endereco()
-        {
-        }
-
-        public Endereco(string logradouro, string bairro, string numero, string estado, string cidade, string pais, string cep)
-        {
-            Logradouro = logradouro;
-            Bairro = bairro;
-            Numero = numero;
-            Estado = estado;
-            Cidade = cidade;
-            Pais = pais;
-            Cep = cep;
-        }
-
         public Endereco(string logradouro, string bairro, string numero, string estado, string cidade, string pais, string cep, string complemento)
         {
             Logradouro = logradouro;

@@ -1,4 +1,6 @@
-﻿using Jr.Backend.Pessoa.Application.UseCases.CadastrarPessoa;
+﻿using AutoMapper;
+using Jr.Backend.Pessoa.Application.AutoMapper;
+using Jr.Backend.Pessoa.Application.UseCases.CadastrarPessoa;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Jr.Backend.Pessoa.Application.DependencyInjection
@@ -8,6 +10,15 @@ namespace Jr.Backend.Pessoa.Application.DependencyInjection
         public static void AddServiceDependencyApplication(this IServiceCollection services)
         {
             services.AddScoped<ICadastrarPessoaUseCase, CadastrarPessoaUseCase>();
+
+            var mapperConfig = new MapperConfiguration(mc =>
+            {
+                mc.AddProfile(new MappingProfileToDomain());
+                mc.AddProfile(new MappingProfileToEntity());
+            });
+
+            IMapper mapper = mapperConfig.CreateMapper();
+            services.AddSingleton(mapper);
         }
     }
 }

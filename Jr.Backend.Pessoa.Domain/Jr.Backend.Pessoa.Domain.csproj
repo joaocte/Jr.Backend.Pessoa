@@ -9,5 +9,6 @@
 		<PackageReference Include="Jr.Backend.Libs.Domain" Version="1.0.0-beta-7" />
 		<PackageReference Include="Jr.Backend.Libs.Domain.Abstractions" Version="1.0.0-beta-7" />
 		<PackageReference Include="MediatR" Version="9.0.0" />
+		<PackageReference Include="MongoDB.Bson" Version="2.13.2" />
 	</ItemGroup>
 </Project>

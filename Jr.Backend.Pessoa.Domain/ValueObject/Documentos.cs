@@ -8,13 +8,9 @@ namespace Jr.Backend.Pessoa.Domain.ValueObject
     {
         public string Cpf { get; }
         public string Rg { get; }
-        public string TituloEleitoral { get; set; }
+        public string TituloEleitoral { get; }
 
         [JsonConstructor]
-        public Documentos()
-        {
-        }
-
         public Documentos(string cpf, string rg, string tituloEleitoral)
         {
             Cpf = cpf;
