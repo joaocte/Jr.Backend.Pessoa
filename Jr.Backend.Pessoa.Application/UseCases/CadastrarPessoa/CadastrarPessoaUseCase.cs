@@ -1,4 +1,5 @@
-﻿using Jr.Backend.Pessoa.Domain;
+﻿using Jr.Backend.Libs.Domain.Abstractions.Interfaces.Repository;
+using Jr.Backend.Pessoa.Domain;
 using Jr.Backend.Pessoa.Domain.Commands.Requests;
 using Jr.Backend.Pessoa.Domain.Commands.Responses;
 using System.Threading.Tasks;
@@ -10,13 +11,20 @@ namespace Jr.Backend.Pessoa.Application.UseCases.CadastrarPessoa
         private bool disposedValue;
 
         private readonly IPessoaRepository pessoaRepository;
+        private readonly IUnitOfWork unitOfWork;
 
-        public CadastrarPessoaUseCase(IPessoaRepository pessoaRepository) => this.pessoaRepository = pessoaRepository;
+        public CadastrarPessoaUseCase(IPessoaRepository pessoaRepository, IUnitOfWork unitOfWork)
+        {
+            this.pessoaRepository = pessoaRepository;
+            this.unitOfWork = unitOfWork;
+        }
 
         public async Task<CadastrarPessoaRespose> ExecuteAsync(CadastrarPessoaRequest cadastrarPessoaRequest)
         {
             Domain.Pessoa pessoa = cadastrarPessoaRequest.Convert();
             await pessoaRepository.AddAsync(pessoa);
+
+            await unitOfWork.CommitAsync();
 
             return new CadastrarPessoaRespose
             {
