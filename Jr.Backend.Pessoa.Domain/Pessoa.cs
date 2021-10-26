@@ -10,8 +10,8 @@ namespace Jr.Backend.Pessoa.Domain
         [JsonConstructor]
         private Pessoa()
         {
-
         }
+
         public Pessoa(NomeCompleto nomeCompleto, IList<Endereco> enderecos, Documentos documentos)
         {
             NomeCompleto = nomeCompleto;
