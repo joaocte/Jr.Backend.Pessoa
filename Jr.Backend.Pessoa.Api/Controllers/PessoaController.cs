@@ -2,7 +2,7 @@
 using Jr.Backend.Pessoa.Domain.Commands.Responses;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
+using System;
 using System.Threading.Tasks;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -13,23 +13,15 @@ namespace Jr.Backend.Pessoa.Api.Controllers
     [ApiController]
     public class PessoaController : ControllerBase
     {
-        // GET: api/<PessoaController>
-        [HttpGet]
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
-
         // GET api/<PessoaController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public Task<ObterPessoaPorIdResponse> Get([FromServices] IMediator mediator, Guid id)
         {
-            return "value";
+            return mediator.Send(new ObterPessoaPorIdRequest(id));
         }
 
         // POST api/<PessoaController>
         [HttpPost]
-        [Route("")]
         public Task<CadastrarPessoaRespose> Post([FromServices] IMediator mediator,
             [FromBody] CadastrarPessoaRequest command)
         {
@@ -38,13 +30,13 @@ namespace Jr.Backend.Pessoa.Api.Controllers
 
         // PUT api/<PessoaController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public void Put(Guid id, [FromBody] string value)
         {
         }
 
         // DELETE api/<PessoaController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public void Delete(Guid id)
         {
         }
     }
