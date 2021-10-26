@@ -3,7 +3,7 @@ using Jr.Backend.Pessoa.Domain.ValueObject;
 
 namespace Jr.Backend.Pessoa.Domain.Validations
 {
-    internal class NomeCompletoValidacoes : AbstractValidator<NomeCompleto>
+    public class NomeCompletoValidacoes : AbstractValidator<NomeCompleto>
     {
         public NomeCompletoValidacoes()
         {

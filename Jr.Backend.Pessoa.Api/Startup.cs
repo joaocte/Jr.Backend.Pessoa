@@ -1,3 +1,4 @@
+using Jr.Backend.Libs.Framework;
 using Jr.Backend.Pessoa.Application.DependencyInjection;
 using Jr.Backend.Pessoa.Infrastructure.DependencyInjection;
 using Microsoft.AspNetCore.Builder;
@@ -28,6 +29,10 @@ namespace Jr.Backend.Pessoa.Api
             });
             services.AddServiceDependencyApplication();
             services.AddServiceDependencyInfrastructure();
+            services.AddControllers(cfg =>
+            {
+                cfg.Filters.Add(typeof(DomainExceptionFilter));
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
