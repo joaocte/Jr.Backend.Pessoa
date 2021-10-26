@@ -3,6 +3,7 @@ using Jr.Backend.Libs.Domain.Abstractions.Interfaces.Repository;
 using Jr.Backend.Libs.Utilities;
 using Jr.Backend.Pessoa.Domain.Commands.Requests;
 using Jr.Backend.Pessoa.Domain.Commands.Responses;
+using Jr.Backend.Pessoa.Domain.Excepitons;
 using Jr.Backend.Pessoa.Infrastructure.Interfaces;
 using System.Threading.Tasks;
 
@@ -28,6 +29,11 @@ namespace Jr.Backend.Pessoa.Application.UseCases.CadastrarPessoa
             Domain.Pessoa pessoa = cadastrarPessoaRequest.Convert();
 
             var pessoaEntity = mapper.Map<Infrastructure.Entity.Pessoa>(pessoa);
+
+            var pessoaJaCadastrada = await pessoaRepository.ExistsAsync(pessoaEntity.Documentos.Cpf);
+
+            if (pessoaJaCadastrada)
+                throw new PessoaJaCadastradaException($"Cpf {pessoaEntity.Documentos.Cpf} Já cadastrado!");
 
             await pessoaRepository.AddAsync(pessoaEntity);
 

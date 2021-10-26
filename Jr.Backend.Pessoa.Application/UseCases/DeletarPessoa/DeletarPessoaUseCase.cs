@@ -1,5 +1,6 @@
 ﻿using Jr.Backend.Libs.Domain.Abstractions.Interfaces.Repository;
 using Jr.Backend.Pessoa.Domain.Commands.Requests;
+using Jr.Backend.Pessoa.Domain.Excepitons;
 using Jr.Backend.Pessoa.Infrastructure.Interfaces;
 using System.Threading.Tasks;
 
@@ -19,6 +20,11 @@ namespace Jr.Backend.Pessoa.Application.UseCases.DeletarPessoa
 
         public async Task<bool> ExecuteAsync(DeletarPessoaRequest deletarPessoaRequest)
         {
+            var pessoaJaCadastrada = await pessoaRepository.ExistsAsync(deletarPessoaRequest.Id);
+
+            if (!pessoaJaCadastrada)
+                throw new PessoaNaoCadastradaException($"Id {deletarPessoaRequest.Id} Não encontrado!");
+
             await pessoaRepository.RemoveAsync(deletarPessoaRequest.Id);
 
             return await unitOfWork.CommitAsync();
