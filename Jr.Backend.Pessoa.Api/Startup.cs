@@ -27,7 +27,7 @@ namespace Jr.Backend.Pessoa.Api
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Jr.Backend.Pessoa.Api", Version = "v1" });
             });
-            services.AddServiceDependencyApplication();
+            services.AddServiceDependencyApplication(Configuration);
             services.AddServiceDependencyInfrastructure();
             services.AddControllers(cfg =>
             {
