@@ -1,5 +1,6 @@
 ﻿using Jr.Backend.Libs.Domain.Abstractions.ValueObject;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace Jr.Backend.Pessoa.Domain.ValueObject
 {
@@ -8,6 +9,11 @@ namespace Jr.Backend.Pessoa.Domain.ValueObject
         public string Nome { get; }
         public string Sobrenome { get; }
 
+        [JsonConstructor]
+        public NomeCompleto()
+        {
+
+        }
         public NomeCompleto(string nome, string sobrenome)
         {
             Nome = nome;

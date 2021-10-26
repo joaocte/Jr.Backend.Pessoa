@@ -1,9 +1,4 @@
 ﻿using Jr.Backend.Libs.Domain.Abstractions.Interfaces.Repository;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Jr.Backend.Pessoa.Domain.Interfaces
 {

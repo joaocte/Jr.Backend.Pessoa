@@ -1,15 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using Jr.Backend.Pessoa.Domain.Commands.Requests;
+using Jr.Backend.Pessoa.Domain.Commands.Responses;
+using System;
 using System.Threading.Tasks;
 
 namespace Jr.Backend.Pessoa.Application.UseCases.CadastrarPessoa
 {
     public interface ICadastrarPessoaUseCase : IDisposable
     {
-        Task ExecuteAsync();
-
-        void SetOutputPort(IOutputPort outputPort);
+        Task<CadastrarPessoaRespose> ExecuteAsync(CadastrarPessoaRequest cadastrarPessoaRequest);
     }
 }

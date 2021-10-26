@@ -1,5 +1,6 @@
 ﻿using Jr.Backend.Libs.Domain.Abstractions.ValueObject;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace Jr.Backend.Pessoa.Domain.ValueObject
 {
@@ -8,6 +9,11 @@ namespace Jr.Backend.Pessoa.Domain.ValueObject
         public string Cpf { get; }
         public string Rg { get; }
         public string TituloEleitoral { get; set; }
+
+        [JsonConstructor]
+        public Documentos()
+        {
+        }
 
         public Documentos(string cpf, string rg, string tituloEleitoral)
         {

@@ -1,10 +1,8 @@
-﻿using Jr.Backend.Libs.Infrastructure.Abstractions.Interfaces;
-using Jr.Backend.Libs.Infrastructure.DependencyInjection;
+﻿using Jr.Backend.Libs.Infrastructure.MongoDB.Abstractions.Interfaces;
+using Jr.Backend.Libs.Infrastructure.MongoDB.DependencyInjection;
 using Jr.Backend.Pessoa.Domain;
 using Jr.Backend.Pessoa.Infrastructure.Repository.MongoDb;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.IO;
 
 namespace Jr.Backend.Pessoa.Infrastructure.DependencyInjection
 {

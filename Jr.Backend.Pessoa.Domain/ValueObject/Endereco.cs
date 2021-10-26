@@ -1,5 +1,6 @@
 ﻿using Jr.Backend.Libs.Domain.Abstractions.ValueObject;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace Jr.Backend.Pessoa.Domain.ValueObject
 {
@@ -14,6 +15,11 @@ namespace Jr.Backend.Pessoa.Domain.ValueObject
         public string Cep { get; }
 
         public string Complemento { get; }
+
+        [JsonConstructor]
+        public Endereco()
+        {
+        }
 
         public Endereco(string logradouro, string bairro, string numero, string estado, string cidade, string pais, string cep)
         {
