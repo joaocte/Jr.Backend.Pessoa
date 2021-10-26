@@ -1,4 +1,5 @@
-﻿using Jr.Backend.Libs.Infrastructure.MongoDB.Abstractions.Interfaces;
+﻿using Jr.Backend.Libs.Infrastructure.MongoDB.Abstractions;
+using Jr.Backend.Libs.Infrastructure.MongoDB.Abstractions.Interfaces;
 using Jr.Backend.Libs.Infrastructure.MongoDB.DependencyInjection;
 using Jr.Backend.Pessoa.Domain;
 using Jr.Backend.Pessoa.Infrastructure.Repository.MongoDb;
@@ -10,7 +11,8 @@ namespace Jr.Backend.Pessoa.Infrastructure.DependencyInjection
     {
         public static void AddServiceDependencyInfrastructure(this IServiceCollection services)
         {
-            services.AddServiceDependencyJrInfrastructure();
+            services.AddServiceDependencyJrInfrastructureMongoDb(ConnectionType.ReplicaSet);
+
             services.AddScoped<IPessoaRepository>((p) =>
             {
                 var mongoContext = p.GetService<IMongoContext>();
