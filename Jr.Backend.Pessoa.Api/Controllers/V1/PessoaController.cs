@@ -7,10 +7,11 @@ using System.Threading.Tasks;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
-namespace Jr.Backend.Pessoa.Api.Controllers
+namespace Jr.Backend.Pessoa.Api.Controllers.V1
 {
-    [Route("api/v1/[controller]")]
+    [Route("api/[controller]")]
     [ApiController]
+    [ApiVersion("1.0")]
     public class PessoaController : ControllerBase
     {
         // GET api/<PessoaController>/5

@@ -1,12 +1,14 @@
 using Jr.Backend.Libs.Framework;
+using Jr.Backend.Pessoa.Api.Swagger;
 using Jr.Backend.Pessoa.Application.DependencyInjection;
 using Jr.Backend.Pessoa.Infrastructure.DependencyInjection;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Versioning;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.OpenApi.Models;
 
 namespace Jr.Backend.Pessoa.Api
 {
@@ -23,10 +25,26 @@ namespace Jr.Backend.Pessoa.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddSwaggerGen(c =>
+
+            services.AddApiVersioning(o =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Jr.Backend.Pessoa.Api", Version = "v1" });
+                o.UseApiBehavior = false;
+                o.ReportApiVersions = true;
+                o.AssumeDefaultVersionWhenUnspecified = true;
+                o.DefaultApiVersion = new ApiVersion(1, 0);
+
+                o.ApiVersionReader = ApiVersionReader.Combine(
+                    new HeaderApiVersionReader("x-api-version"),
+                    new UrlSegmentApiVersionReader());
             });
+            services.AddVersionedApiExplorer(options =>
+            {
+                options.GroupNameFormat = "'v'VVV";
+                options.SubstituteApiVersionInUrl = true;
+            });
+            services.ConfigureOptions<ConfigureSwaggerOptions>();
+
+            services.AddSwaggerGen();
             services.AddServiceDependencyApplication(Configuration);
             services.AddServiceDependencyInfrastructure();
             services.AddControllers(cfg =>
