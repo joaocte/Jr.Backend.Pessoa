@@ -8,12 +8,15 @@ using System.IO;
 
 namespace Jr.Backend.Pessoa.Api.Swagger
 {
+    /// <inheritdoc/>
     public class ConfigureSwaggerOptions : IConfigureOptions<SwaggerGenOptions>
     {
         private readonly IApiVersionDescriptionProvider provider;
 
+        /// <inheritdoc/>
         public ConfigureSwaggerOptions(IApiVersionDescriptionProvider provider) => this.provider = provider;
 
+        /// <inheritdoc/>
         public void Configure(SwaggerGenOptions options)
         {
             foreach (var description in provider.ApiVersionDescriptions)
