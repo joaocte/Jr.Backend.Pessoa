@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
+using Jr.Backend.Libs.Domain.Abstractions.Exceptions;
 using Jr.Backend.Libs.Domain.Abstractions.Interfaces.Repository;
 using Jr.Backend.Libs.Utilities;
 using Jr.Backend.Message.Events.Pessoa;
 using Jr.Backend.Pessoa.Domain.Commands.Requests;
 using Jr.Backend.Pessoa.Domain.Commands.Responses;
-using Jr.Backend.Pessoa.Domain.Excepitons;
 using Jr.Backend.Pessoa.Infrastructure.Interfaces;
 using MassTransit;
 using System.Threading.Tasks;
@@ -35,7 +35,7 @@ namespace Jr.Backend.Pessoa.Application.UseCases.CadastrarPessoa
             var pessoaJaCadastrada = await pessoaRepository.ExistsAsync(pessoa.Documentos.Cpf);
 
             if (pessoaJaCadastrada)
-                throw new PessoaJaCadastradaException($"Cpf {pessoa.Documentos.Cpf} Já cadastrado!");
+                throw new AlreadyRegisteredException($"Cpf {pessoa.Documentos.Cpf} Já cadastrado!");
 
             var pessoaEntity = mapper.Map<Infrastructure.Entity.Pessoa>(pessoa);
 
