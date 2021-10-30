@@ -24,14 +24,21 @@ namespace Jr.Backend.Pessoa.Api.Controllers.V1
 
         // POST api/<PessoaController>
         [HttpPost]
-        public async Task<CadastrarPessoaRespose> Post([FromServices] IMediator mediator,
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status409Conflict)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<ActionResult<CadastrarPessoaRespose>> Post([FromServices] IMediator mediator,
             [FromBody] CadastrarPessoaRequest command)
         {
-            return await mediator.Send(command);
+            var commandResult = await mediator.Send(command);
+            return CreatedAtAction("Get", new { id = commandResult.Id }, commandResult);
         }
 
         // PUT api/<PessoaController>/5
         [HttpPut("{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<AtualizarPessoaResponse> Put(Guid id, [FromBody] PessoaResquest request, [FromServices] IMediator mediator)
         {
             AtualizarPessoaRequest command = new()
@@ -44,6 +51,7 @@ namespace Jr.Backend.Pessoa.Api.Controllers.V1
         [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> Delete(Guid id, [FromServices] IMediator mediator)
         {
             var command = new DeletarPessoaRequest(id);
