@@ -30,7 +30,7 @@ namespace Jr.Backend.Pessoa.Api.Controllers.V1
         public async Task<ActionResult<CadastrarPessoaRespose>> Post([FromServices] IMediator mediator,
             [FromBody] CadastrarPessoaRequest command)
         {
-            var commandResult = await mediator.Send(command);
+            CadastrarPessoaRespose commandResult = await mediator.Send(command);
             return CreatedAtAction("Get", new { id = commandResult.Id }, commandResult);
         }
 

@@ -19,7 +19,7 @@ namespace Jr.Backend.Pessoa.Infrastructure.Repository.MongoDb
         .Eq(z => z.Documentos.Cpf, cpf);
             var data = await _dbSet.FindAsync(filter, null, cancellationToken).ConfigureAwait(false);
 
-            return await data.AnyAsync(cancellationToken: cancellationToken);
+            return await data.SingleOrDefaultAsync(cancellationToken: cancellationToken).ConfigureAwait(false) != default;
         }
     }
 }

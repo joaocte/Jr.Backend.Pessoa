@@ -18,6 +18,8 @@ namespace Jr.Backend.Pessoa.Application.DependencyInjection
         public static void AddServiceDependencyApplication(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddScoped<ICadastrarPessoaUseCase, CadastrarPessoaUseCase>();
+            services.Decorate<ICadastrarPessoaUseCase, CadastrarPessoaValidationUseCase>();
+
             services.AddScoped<IObterPessoaPorIdUseCase, ObterPessoaPorIdUseCase>();
             services.AddScoped<IAtualizarPessoaUseCase, AtualizarPessoaUseCase>();
             services.AddScoped<IDeletarPessoaUseCase, DeletarPessoaUseCase>();

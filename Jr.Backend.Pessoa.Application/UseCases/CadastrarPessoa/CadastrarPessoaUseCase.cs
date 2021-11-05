@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using Jr.Backend.Libs.Domain.Abstractions.Exceptions;
 using Jr.Backend.Libs.Domain.Abstractions.Interfaces.Repository;
 using Jr.Backend.Libs.Utilities;
 using Jr.Backend.Message.Events.Pessoa;
@@ -31,11 +30,6 @@ namespace Jr.Backend.Pessoa.Application.UseCases.CadastrarPessoa
         public async Task<CadastrarPessoaRespose> ExecuteAsync(CadastrarPessoaRequest cadastrarPessoaRequest)
         {
             Domain.Pessoa pessoa = cadastrarPessoaRequest.Convert();
-
-            var pessoaJaCadastrada = await pessoaRepository.ExistsAsync(pessoa.Documentos.Cpf);
-
-            if (pessoaJaCadastrada)
-                throw new AlreadyRegisteredException($"Cpf {pessoa.Documentos.Cpf} Já cadastrado!");
 
             var pessoaEntity = mapper.Map<Infrastructure.Entity.Pessoa>(pessoa);
 
