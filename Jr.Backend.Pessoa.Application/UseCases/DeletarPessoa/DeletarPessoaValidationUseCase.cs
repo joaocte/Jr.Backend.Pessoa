@@ -1,27 +1,30 @@
-﻿using Jr.Backend.Libs.Domain.Abstractions.Interfaces.Repository;
+﻿using Jr.Backend.Libs.Domain.Abstractions.Exceptions;
 using Jr.Backend.Pessoa.Domain.Commands.Requests;
 using Jr.Backend.Pessoa.Infrastructure.Interfaces;
 using System.Threading.Tasks;
 
 namespace Jr.Backend.Pessoa.Application.UseCases.DeletarPessoa
 {
-    public class DeletarPessoaUseCase : IDeletarPessoaUseCase
+    public class DeletarPessoaValidationUseCase : IDeletarPessoaUseCase
     {
         private bool disposedValue;
-        private readonly IUnitOfWork unitOfWork;
         private readonly IPessoaRepository pessoaRepository;
+        private readonly IDeletarPessoaUseCase deletarPessoaUseCase;
 
-        public DeletarPessoaUseCase(IUnitOfWork unitOfWork, IPessoaRepository pessoaRepository)
+        public DeletarPessoaValidationUseCase(IPessoaRepository pessoaRepository, IDeletarPessoaUseCase deletarPessoaUseCase)
         {
-            this.unitOfWork = unitOfWork;
             this.pessoaRepository = pessoaRepository;
+            this.deletarPessoaUseCase = deletarPessoaUseCase;
         }
 
         public async Task<bool> ExecuteAsync(DeletarPessoaRequest deletarPessoaRequest)
         {
-            await pessoaRepository.RemoveAsync(deletarPessoaRequest.Id);
+            var pessoaJaCadastrada = await pessoaRepository.ExistsAsync(deletarPessoaRequest.Id);
 
-            return await unitOfWork.CommitAsync();
+            if (!pessoaJaCadastrada)
+                throw new NotFoundException($"Id {deletarPessoaRequest.Id} Não encontrado!");
+
+            return await deletarPessoaUseCase.ExecuteAsync(deletarPessoaRequest);
         }
 
         protected virtual void Dispose(bool disposing)
@@ -30,8 +33,8 @@ namespace Jr.Backend.Pessoa.Application.UseCases.DeletarPessoa
             {
                 if (disposing)
                 {
-                    pessoaRepository?.Dispose();
-                    unitOfWork?.Dispose();
+                    deletarPessoaUseCase.Dispose();
+                    pessoaRepository.Dispose();
                 }
 
                 disposedValue = true;

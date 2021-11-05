@@ -2,7 +2,6 @@
 using Jr.Backend.Pessoa.Domain.Commands.Requests;
 using Jr.Backend.Pessoa.Domain.Commands.Responses;
 using Jr.Backend.Pessoa.Infrastructure.Interfaces;
-using System;
 using System.Threading.Tasks;
 
 namespace Jr.Backend.Pessoa.Application.UseCases.CadastrarPessoa
@@ -34,27 +33,17 @@ namespace Jr.Backend.Pessoa.Application.UseCases.CadastrarPessoa
             {
                 if (disposing)
                 {
-                    // TODO: dispose managed state (managed objects)
+                    cadastrarPessoaUseCase.Dispose();
+                    pessoaRepository.Dispose();
                 }
 
-                // TODO: free unmanaged resources (unmanaged objects) and override finalizer
-                // TODO: set large fields to null
                 disposedValue = true;
             }
         }
 
-        // // TODO: override finalizer only if 'Dispose(bool disposing)' has code to free unmanaged resources
-        // ~CadastrarPessoaValidationUseCase()
-        // {
-        //     // Do not change this code. Put cleanup code in 'Dispose(bool disposing)' method
-        //     Dispose(disposing: false);
-        // }
-
         public void Dispose()
         {
-            // Do not change this code. Put cleanup code in 'Dispose(bool disposing)' method
             Dispose(disposing: true);
-            GC.SuppressFinalize(this);
         }
     }
 }

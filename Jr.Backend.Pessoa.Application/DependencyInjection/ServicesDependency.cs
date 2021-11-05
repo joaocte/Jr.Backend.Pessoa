@@ -21,8 +21,13 @@ namespace Jr.Backend.Pessoa.Application.DependencyInjection
             services.Decorate<ICadastrarPessoaUseCase, CadastrarPessoaValidationUseCase>();
 
             services.AddScoped<IObterPessoaPorIdUseCase, ObterPessoaPorIdUseCase>();
+
             services.AddScoped<IAtualizarPessoaUseCase, AtualizarPessoaUseCase>();
+            services.Decorate<IAtualizarPessoaUseCase, AtualizarPessoaValidationUseCase>();
+
             services.AddScoped<IDeletarPessoaUseCase, DeletarPessoaUseCase>();
+            services.Decorate<IDeletarPessoaUseCase, DeletarPessoaValidationUseCase>();
+
             services.AddMediatR(Assembly.GetExecutingAssembly());
             var mapperConfig = new MapperConfiguration(mc =>
             {
