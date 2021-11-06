@@ -8,11 +8,12 @@ namespace Jr.Backend.Pessoa.Application.UseCases.AtualizarPessoa
 {
     public class AtualizarPessoaValidationUseCase : IAtualizarPessoaUseCase
     {
-        private bool disposedValue;
-        private readonly IPessoaRepository pessoaRepository;
         private readonly IAtualizarPessoaUseCase atualizarPessoaUseCase;
+        private readonly IPessoaRepository pessoaRepository;
+        private bool disposedValue;
 
-        public AtualizarPessoaValidationUseCase(IPessoaRepository pessoaRepository, IAtualizarPessoaUseCase atualizarPessoaUseCase)
+        public AtualizarPessoaValidationUseCase(IPessoaRepository pessoaRepository,
+            IAtualizarPessoaUseCase atualizarPessoaUseCase)
         {
             this.pessoaRepository = pessoaRepository;
             this.atualizarPessoaUseCase = atualizarPessoaUseCase;
@@ -21,12 +22,18 @@ namespace Jr.Backend.Pessoa.Application.UseCases.AtualizarPessoa
         public async Task<AtualizarPessoaResponse> ExecuteAsync(AtualizarPessoaRequest atualizarPessoaRequest)
         {
             var pessoaJaCadastrada = await pessoaRepository.ExistsAsync(atualizarPessoaRequest.Documentos.Cpf)
-               && await pessoaRepository.ExistsAsync(atualizarPessoaRequest.Id);
+                                     && await pessoaRepository.ExistsAsync(atualizarPessoaRequest.Id);
 
             if (!pessoaJaCadastrada)
-                throw new NotFoundException($"Cpf {atualizarPessoaRequest.Documentos.Cpf} ou Id {atualizarPessoaRequest.Id} Não encontrado!");
+                throw new NotFoundException(
+                    $"Cpf {atualizarPessoaRequest.Documentos.Cpf} ou Id {atualizarPessoaRequest.Id} Não encontrado!");
 
             return await atualizarPessoaUseCase.ExecuteAsync(atualizarPessoaRequest);
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
         }
 
         protected virtual void Dispose(bool disposing)
@@ -35,15 +42,12 @@ namespace Jr.Backend.Pessoa.Application.UseCases.AtualizarPessoa
             {
                 if (disposing)
                 {
+                    atualizarPessoaUseCase.Dispose();
+                    pessoaRepository.Dispose();
                 }
 
                 disposedValue = true;
             }
-        }
-
-        public void Dispose()
-        {
-            Dispose(disposing: true);
         }
     }
 }

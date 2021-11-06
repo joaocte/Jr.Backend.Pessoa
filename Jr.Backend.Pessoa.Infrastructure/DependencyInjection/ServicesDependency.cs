@@ -16,7 +16,7 @@ namespace Jr.Backend.Pessoa.Infrastructure.DependencyInjection
             services.AddScoped<IPessoaRepository>((p) =>
             {
                 var mongoContext = p.GetService<IMongoContext>();
-                return new PessoaRepository(mongoContext, typeof(Domain.Pessoa).Name);
+                return new PessoaRepository(mongoContext, nameof(Domain.Pessoa));
             });
         }
     }

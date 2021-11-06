@@ -9,7 +9,7 @@ namespace Jr.Backend.Pessoa.Application.Handlers
 {
     public class AtualizarPessoaHandler : IRequestHandler<AtualizarPessoaRequest, AtualizarPessoaResponse>
     {
-        private IAtualizarPessoaUseCase atualizarPessoaUseCase;
+        private readonly IAtualizarPessoaUseCase atualizarPessoaUseCase;
 
         public AtualizarPessoaHandler(IAtualizarPessoaUseCase atualizarPessoaUseCase)
         {

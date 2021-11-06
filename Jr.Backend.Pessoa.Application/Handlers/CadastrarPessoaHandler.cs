@@ -9,7 +9,7 @@ namespace Jr.Backend.Pessoa.Application.Handlers
 {
     public class CadastrarPessoaHandler : IRequestHandler<CadastrarPessoaRequest, CadastrarPessoaRespose>
     {
-        private ICadastrarPessoaUseCase cadastrarPessoaUseCase;
+        private readonly ICadastrarPessoaUseCase cadastrarPessoaUseCase;
 
         public CadastrarPessoaHandler(ICadastrarPessoaUseCase cadastrarPessoaUseCase)
         {
