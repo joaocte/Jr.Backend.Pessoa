@@ -29,6 +29,7 @@ namespace Jr.Backend.Pessoa.Application.DependencyInjection
             services.Decorate<IDeletarPessoaUseCase, DeletarPessoaValidationUseCase>();
 
             services.AddMediatR(Assembly.GetExecutingAssembly());
+
             var mapperConfig = new MapperConfiguration(mc =>
             {
                 mc.AddProfile(new MappingProfileToDomain());

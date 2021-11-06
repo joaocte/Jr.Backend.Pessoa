@@ -1,6 +1,8 @@
+using FluentValidation.AspNetCore;
 using Jr.Backend.Libs.Framework;
 using Jr.Backend.Pessoa.Api.Swagger;
 using Jr.Backend.Pessoa.Application.DependencyInjection;
+using Jr.Backend.Pessoa.Domain.Validations;
 using Jr.Backend.Pessoa.Infrastructure.DependencyInjection;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -54,6 +56,9 @@ namespace Jr.Backend.Pessoa.Api
             {
                 cfg.Filters.Add(typeof(DomainExceptionFilter));
             });
+
+            services.AddMvc().AddFluentValidation(fvc =>
+                            fvc.RegisterValidatorsFromAssemblyContaining<DocumentosValidacoes>());
         }
 
         /// <inheritdoc/>
