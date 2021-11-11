@@ -12,6 +12,7 @@ namespace Jr.Backend.Pessoa.Application.UseCases.DeletarPessoa
         private readonly IDeletarPessoaUseCase deletarPessoaUseCase;
 
         public DeletarPessoaValidationUseCase(IPessoaRepository pessoaRepository, IDeletarPessoaUseCase deletarPessoaUseCase)
+
         {
             this.pessoaRepository = pessoaRepository;
             this.deletarPessoaUseCase = deletarPessoaUseCase;

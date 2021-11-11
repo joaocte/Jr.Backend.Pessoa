@@ -31,7 +31,7 @@ namespace Jr.Backend.Pessoa.Api.Controllers.V1
             [FromBody] CadastrarPessoaRequest command)
         {
             CadastrarPessoaRespose commandResult = await mediator.Send(command);
-            return CreatedAtAction("Get", new { id = commandResult.Id }, commandResult);
+            return CreatedAtAction("Get", new { id = commandResult?.Id }, commandResult);
         }
 
         // PUT api/<PessoaController>/5
