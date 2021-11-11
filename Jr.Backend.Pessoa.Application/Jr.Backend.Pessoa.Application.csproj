@@ -6,12 +6,12 @@
 
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="10.1.1" />
-    <PackageReference Include="Jr.Backend.Libs.Utilities" Version="1.0.0-alpha-06" />
+    <PackageReference Include="Jr.Backend.Libs.Utilities" Version="1.0.0-alpha-09" />
     <PackageReference Include="Jr.Backend.Message.Events" Version="1.0.0-alpha-01" />
-    <PackageReference Include="MassTransit" Version="7.2.3" />
-    <PackageReference Include="MassTransit.AspNetCore" Version="7.2.3" />
-    <PackageReference Include="MassTransit.Extensions.DependencyInjection" Version="7.2.3" />
-    <PackageReference Include="MassTransit.RabbitMQ" Version="7.2.3" />
+    <PackageReference Include="MassTransit" Version="7.2.4" />
+    <PackageReference Include="MassTransit.AspNetCore" Version="7.2.4" />
+    <PackageReference Include="MassTransit.Extensions.DependencyInjection" Version="7.2.4" />
+    <PackageReference Include="MassTransit.RabbitMQ" Version="7.2.4" />
     <PackageReference Include="MediatR" Version="9.0.0" />
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="9.0.0" />
     <PackageReference Include="Scrutor" Version="3.3.0" />

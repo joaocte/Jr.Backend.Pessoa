@@ -1,5 +1,5 @@
 ﻿using Jr.Backend.Libs.Domain.Abstractions.Exceptions;
-using Jr.Backend.Libs.Domain.Notifications;
+using Jr.Backend.Libs.Domain.Abstractions.Notifications;
 using Jr.Backend.Pessoa.Domain.Commands.Requests;
 using Jr.Backend.Pessoa.Domain.Commands.Responses;
 using Jr.Backend.Pessoa.Infrastructure.Interfaces;
@@ -11,11 +11,11 @@ namespace Jr.Backend.Pessoa.Application.UseCases.AtualizarPessoa
     {
         private readonly IAtualizarPessoaUseCase atualizarPessoaUseCase;
         private readonly IPessoaRepository pessoaRepository;
-        private readonly NotificationContext notificationContext;
+        private readonly INotificationContext notificationContext;
         private bool disposedValue;
 
         public AtualizarPessoaValidationUseCase(IPessoaRepository pessoaRepository,
-            IAtualizarPessoaUseCase atualizarPessoaUseCase, NotificationContext notificationContext)
+            IAtualizarPessoaUseCase atualizarPessoaUseCase, INotificationContext notificationContext)
         {
             this.pessoaRepository = pessoaRepository;
             this.atualizarPessoaUseCase = atualizarPessoaUseCase;

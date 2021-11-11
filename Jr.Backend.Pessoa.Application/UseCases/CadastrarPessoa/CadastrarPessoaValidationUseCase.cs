@@ -1,5 +1,5 @@
 ﻿using Jr.Backend.Libs.Domain.Abstractions.Exceptions;
-using Jr.Backend.Libs.Domain.Notifications;
+using Jr.Backend.Libs.Domain.Abstractions.Notifications;
 using Jr.Backend.Pessoa.Domain.Commands.Requests;
 using Jr.Backend.Pessoa.Domain.Commands.Responses;
 using Jr.Backend.Pessoa.Infrastructure.Interfaces;
@@ -12,9 +12,9 @@ namespace Jr.Backend.Pessoa.Application.UseCases.CadastrarPessoa
         private bool disposedValue;
         private readonly ICadastrarPessoaUseCase cadastrarPessoaUseCase;
         private readonly IPessoaRepository pessoaRepository;
-        private readonly NotificationContext notificationContext;
+        private readonly INotificationContext notificationContext;
 
-        public CadastrarPessoaValidationUseCase(ICadastrarPessoaUseCase cadastrarPessoaUseCase, IPessoaRepository pessoaRepository, NotificationContext notificationContext)
+        public CadastrarPessoaValidationUseCase(ICadastrarPessoaUseCase cadastrarPessoaUseCase, IPessoaRepository pessoaRepository, INotificationContext notificationContext)
         {
             this.cadastrarPessoaUseCase = cadastrarPessoaUseCase;
             this.pessoaRepository = pessoaRepository;
