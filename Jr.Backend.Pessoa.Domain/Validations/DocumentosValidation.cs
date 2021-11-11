@@ -4,9 +4,9 @@ using Jr.Backend.Pessoa.Domain.ValueObject;
 
 namespace Jr.Backend.Pessoa.Domain.Validations
 {
-    public class DocumentosValidacoes : AbstractValidator<Documentos>
+    public class DocumentosValidation : AbstractValidator<Documentos>
     {
-        public DocumentosValidacoes()
+        public DocumentosValidation()
         {
             RuleFor(p => p.Rg)
                 .NotEmpty()

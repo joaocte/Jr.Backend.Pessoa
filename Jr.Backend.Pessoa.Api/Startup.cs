@@ -55,7 +55,7 @@ namespace Jr.Backend.Pessoa.Api
             services.AddServiceDependencyJrFramework();
 
             services.AddMvc().AddFluentValidation(fvc =>
-                            fvc.RegisterValidatorsFromAssemblyContaining<DocumentosValidacoes>());
+                            fvc.RegisterValidatorsFromAssemblyContaining<DocumentosValidation>());
         }
 
         /// <inheritdoc/>

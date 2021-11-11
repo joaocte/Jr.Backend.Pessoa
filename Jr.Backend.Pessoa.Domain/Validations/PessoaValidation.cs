@@ -6,11 +6,11 @@ namespace Jr.Backend.Pessoa.Domain.Validations
     {
         public PessoaValidation()
         {
-            RuleFor(p => p.NomeCompleto).SetValidator(new NomeCompletoValidacoes());
+            RuleFor(p => p.NomeCompleto).SetValidator(new NomeCompletoValidation());
 
-            RuleFor(p => p.Documentos).SetValidator(new DocumentosValidacoes());
+            RuleFor(p => p.Documentos).SetValidator(new DocumentosValidation());
 
-            RuleForEach(p => p.Enderecos).SetValidator(new EnderecoValidacoes());
+            RuleForEach(p => p.Enderecos).SetValidator(new EnderecoValidation());
         }
     }
 }

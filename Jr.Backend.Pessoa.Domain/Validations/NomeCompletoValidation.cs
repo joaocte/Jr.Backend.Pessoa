@@ -3,9 +3,9 @@ using Jr.Backend.Pessoa.Domain.ValueObject;
 
 namespace Jr.Backend.Pessoa.Domain.Validations
 {
-    public class NomeCompletoValidacoes : AbstractValidator<NomeCompleto>
+    public class NomeCompletoValidation : AbstractValidator<NomeCompleto>
     {
-        public NomeCompletoValidacoes()
+        public NomeCompletoValidation()
         {
             RuleFor(p => p.Nome)
                 .NotNull()

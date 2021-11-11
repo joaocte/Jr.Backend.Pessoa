@@ -3,9 +3,9 @@ using Jr.Backend.Pessoa.Domain.ValueObject;
 
 namespace Jr.Backend.Pessoa.Domain.Validations
 {
-    public class EnderecoValidacoes : AbstractValidator<Endereco>
+    public class EnderecoValidation : AbstractValidator<Endereco>
     {
-        public EnderecoValidacoes()
+        public EnderecoValidation()
         {
             RuleFor(p => p.Bairro)
                 .NotEmpty()
