@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using Jr.Backend.Message.Events.Pessoa;
 using Jr.Backend.Message.Events.Pessoa.Dto;
+using Jr.Backend.Message.Events.Pessoa.Evemts;
 
 namespace Jr.Backend.Pessoa.Application.AutoMapper
 {
