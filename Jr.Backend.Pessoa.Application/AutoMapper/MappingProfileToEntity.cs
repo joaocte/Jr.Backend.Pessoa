@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Jr.Backend.Pessoa.Domain.Commands.Requests;
 using Jr.Backend.Pessoa.Domain.ValueObject;
 
 namespace Jr.Backend.Pessoa.Application.AutoMapper
@@ -11,6 +12,7 @@ namespace Jr.Backend.Pessoa.Application.AutoMapper
             CreateMap<Documentos, Infrastructure.Entity.Documentos>();
             CreateMap<NomeCompleto, Infrastructure.Entity.NomeCompleto>();
             CreateMap<Domain.Pessoa, Infrastructure.Entity.Pessoa>();
+            CreateMap<AtualizarPessoaRequest, Infrastructure.Entity.Pessoa>();
         }
     }
 }

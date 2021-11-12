@@ -1,6 +1,9 @@
-﻿using Jr.Backend.Libs.Domain.Abstractions.Interfaces.Repository;
+﻿using AutoMapper;
+using Jr.Backend.Libs.Domain.Abstractions.Interfaces.Repository;
+using Jr.Backend.Message.Events.Pessoa.Evemts;
 using Jr.Backend.Pessoa.Domain.Commands.Requests;
 using Jr.Backend.Pessoa.Infrastructure.Interfaces;
+using MassTransit;
 using System.Threading.Tasks;
 
 namespace Jr.Backend.Pessoa.Application.UseCases.DeletarPessoa
@@ -10,18 +13,30 @@ namespace Jr.Backend.Pessoa.Application.UseCases.DeletarPessoa
         private bool disposedValue;
         private readonly IUnitOfWork unitOfWork;
         private readonly IPessoaRepository pessoaRepository;
+        private readonly IBus bus;
+        private readonly IMapper mapper;
 
-        public DeletarPessoaUseCase(IUnitOfWork unitOfWork, IPessoaRepository pessoaRepository)
+        public DeletarPessoaUseCase(IUnitOfWork unitOfWork, IPessoaRepository pessoaRepository, IBus bus, IMapper mapper)
         {
             this.unitOfWork = unitOfWork;
             this.pessoaRepository = pessoaRepository;
+            this.bus = bus;
+            this.mapper = mapper;
         }
 
         public async Task<bool> ExecuteAsync(DeletarPessoaRequest deletarPessoaRequest)
         {
+            var pessoa = await pessoaRepository.GetByIdAsync(deletarPessoaRequest.Id);
+
             await pessoaRepository.RemoveAsync(deletarPessoaRequest.Id);
 
-            return await unitOfWork.CommitAsync();
+            var commit = await unitOfWork.CommitAsync();
+
+            var @event = mapper.Map<PessoaDeletadaEvent>(pessoa);
+
+            await bus.Publish(@event);
+
+            return commit;
         }
 
         protected virtual void Dispose(bool disposing)

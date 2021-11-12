@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
-using Jr.Backend.Message.Events.Pessoa.Dto;
 using Jr.Backend.Message.Events.Pessoa.Evemts;
+using Jr.Backend.Message.Share.Pessoa;
+using Endereco = Jr.Backend.Message.Share.Fornecedor.Endereco.Endereco;
 
 namespace Jr.Backend.Pessoa.Application.AutoMapper
 {
@@ -12,6 +13,8 @@ namespace Jr.Backend.Pessoa.Application.AutoMapper
             CreateMap<Infrastructure.Entity.Documentos, Documentos>();
             CreateMap<Infrastructure.Entity.NomeCompleto, NomeCompleto>();
             CreateMap<Infrastructure.Entity.Pessoa, PessoaCadastradaEvent>();
+            CreateMap<Infrastructure.Entity.Pessoa, PessoaAtualizadaEvent>();
+            CreateMap<Domain.Pessoa, PessoaDeletadaEvent>();
         }
     }
 }
