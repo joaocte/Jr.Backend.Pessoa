@@ -1,36 +1,36 @@
 ﻿using AutoMapper;
 using Jr.Backend.Libs.Domain.Abstractions.Exceptions;
+using Jr.Backend.Libs.Extensions;
 using Jr.Backend.Pessoa.Domain.Commands.Requests;
-using Jr.Backend.Pessoa.Domain.Commands.Responses;
 using Jr.Backend.Pessoa.Infrastructure.Interfaces;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Jr.Backend.Pessoa.Application.UseCases.ObterPessoa
 {
-    public class ObterPessoaPorIdUseCase : IObterPessoaPorIdUseCase
+    public class ObterPessoaUseCase : IObterPessoaUseCase
     {
         private bool disposedValue;
         private readonly IMapper mapper;
         private readonly IPessoaRepository pessoaRepository;
 
-        public ObterPessoaPorIdUseCase(IMapper mapper, IPessoaRepository pessoaRepository)
+        public ObterPessoaUseCase(IMapper mapper, IPessoaRepository pessoaRepository)
         {
             this.mapper = mapper;
             this.pessoaRepository = pessoaRepository;
         }
 
-        public async Task<ObterPessoaPorIdResponse> ExecuteAsync(ObterPessoaPorIdRequest cadastrarPessoaRequest)
+        public async Task<IEnumerable<Domain.Pessoa>> ExecuteAsync(ObterPessoaPorIdRequest cadastrarPessoaRequest)
         {
-            var pessoaJaCadastrada = await pessoaRepository.ExistsAsync(cadastrarPessoaRequest.Id);
+            var pessoasQueryable = await pessoaRepository.GetAllAsQueryableAsync();
 
-            if (!pessoaJaCadastrada)
-                throw new NotFoundException($"Id {cadastrarPessoaRequest.Id} Não encontrado!");
+            var pessoasEntity = pessoasQueryable.Apply(cadastrarPessoaRequest).ToList();
 
-            var pessoaEntity = await pessoaRepository.GetByIdAsync(cadastrarPessoaRequest.Id);
+            if ((bool)!pessoasEntity?.Any())
+                throw new NotFoundException($"Não foi encontrado uma pessoa para consulta informada.");
 
-            var pessoaDomain = mapper.Map<Domain.Pessoa>(pessoaEntity);
-
-            return new ObterPessoaPorIdResponse(pessoaDomain.NomeCompleto, pessoaDomain.Enderecos, pessoaDomain.Documentos);
+            return mapper.Map<IEnumerable<Domain.Pessoa>>(pessoasEntity);
         }
 
         protected virtual void Dispose(bool disposing)

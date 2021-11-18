@@ -20,7 +20,7 @@ namespace Jr.Backend.Pessoa.Application.DependencyInjection
             services.AddScoped<ICadastrarPessoaUseCase, CadastrarPessoaUseCase>();
             services.Decorate<ICadastrarPessoaUseCase, CadastrarPessoaValidationUseCase>();
 
-            services.AddScoped<IObterPessoaPorIdUseCase, ObterPessoaPorIdUseCase>();
+            services.AddScoped<IObterPessoaUseCase, ObterPessoaUseCase>();
 
             services.AddScoped<IAtualizarPessoaUseCase, AtualizarPessoaUseCase>();
             services.Decorate<IAtualizarPessoaUseCase, AtualizarPessoaValidationUseCase>();
@@ -43,13 +43,16 @@ namespace Jr.Backend.Pessoa.Application.DependencyInjection
             services.AddMassTransit(x =>
             {
                 x.AddBus(provider => Bus.Factory.CreateUsingRabbitMq(config =>
-                {
-                    config.Host(new Uri(configuration["RabbitSetting:UriBase"]), h =>
                     {
-                        h.Username(configuration["RabbitSetting:User"]);
-                        h.Password(configuration["RabbitSetting:Password"]);
-                    });
-                }
+                        var uri = configuration["RabbitSetting:UriBase"];
+                        var user = configuration["RabbitSetting:User"];
+                        var password = configuration["RabbitSetting:Password"];
+                        config.Host(new Uri(uri), h =>
+                        {
+                            h.Username(user);
+                            h.Password(password);
+                        });
+                    }
                 ));
             });
 

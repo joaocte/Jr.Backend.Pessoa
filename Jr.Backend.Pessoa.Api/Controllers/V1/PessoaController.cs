@@ -4,6 +4,7 @@ using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -16,10 +17,10 @@ namespace Jr.Backend.Pessoa.Api.Controllers.V1
     public class PessoaController : ControllerBase
     {
         // GET api/<PessoaController>/5
-        [HttpGet("{id}")]
-        public async Task<ObterPessoaPorIdResponse> Get([FromServices] IMediator mediator, Guid id)
+        [HttpGet]
+        public async Task<IEnumerable<Domain.Pessoa>> Get([FromServices] IMediator mediator, [FromQuery] ObterPessoaPorIdRequest request)
         {
-            return await mediator.Send(new ObterPessoaPorIdRequest(id));
+            return await mediator.Send(request);
         }
 
         // POST api/<PessoaController>

@@ -33,9 +33,11 @@ namespace Jr.Backend.Pessoa.Application.UseCases.CadastrarPessoa
 
             var pessoaEntity = mapper.Map<Infrastructure.Entity.Pessoa>(pessoa);
 
-            await pessoaRepository.AddAsync(pessoaEntity);
+            var taskInsert = pessoaRepository.AddAsync(pessoaEntity);
 
-            await unitOfWork.CommitAsync();
+            var taskCommit = unitOfWork.CommitAsync();
+
+            await Task.WhenAll(taskInsert, taskCommit);
 
             PessoaCadastradaEvent @event = mapper.Map<PessoaCadastradaEvent>(pessoaEntity);
 

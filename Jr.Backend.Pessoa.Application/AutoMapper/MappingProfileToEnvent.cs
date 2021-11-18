@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using Jr.Backend.Message.Events.Pessoa.Evemts;
 using Jr.Backend.Message.Share.Pessoa;
-using Endereco = Jr.Backend.Message.Share.Fornecedor.Endereco.Endereco;
 
 namespace Jr.Backend.Pessoa.Application.AutoMapper
 {
