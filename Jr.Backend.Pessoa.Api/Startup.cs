@@ -1,8 +1,7 @@
-using FluentValidation.AspNetCore;
 using Jr.Backend.Libs.Framework.DependencyInjection;
+using Jr.Backend.Libs.Security.DependencyInjection;
 using Jr.Backend.Pessoa.Api.Swagger;
 using Jr.Backend.Pessoa.Application.DependencyInjection;
-using Jr.Backend.Pessoa.Domain.Validations;
 using Jr.Backend.Pessoa.Infrastructure.DependencyInjection;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -11,6 +10,7 @@ using Microsoft.AspNetCore.Mvc.Versioning;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.OpenApi.Models;
 
 namespace Jr.Backend.Pessoa.Api
 {
@@ -49,13 +49,42 @@ namespace Jr.Backend.Pessoa.Api
             });
             services.ConfigureOptions<ConfigureSwaggerOptions>();
 
-            services.AddSwaggerGen();
+            #region Swagger
+
+            services.AddSwaggerGen(c =>
+            {
+                c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+                {
+                    Description = "Input token like: Bearer {token}",
+                    Name = "Authorization",
+                    Scheme = "Bearer",
+                    BearerFormat = "JWT",
+                    In = ParameterLocation.Header,
+                    Type = SecuritySchemeType.ApiKey
+                });
+
+                c.AddSecurityRequirement(new OpenApiSecurityRequirement
+                {
+                    {
+                        new OpenApiSecurityScheme
+                        {
+                            Reference = new OpenApiReference
+                            {
+                                Type = ReferenceType.SecurityScheme,
+                                Id = "Bearer"
+                            }
+                        },
+                        new string[] {}
+                    }
+                });
+            });
+
+            #endregion Swagger
+
             services.AddServiceDependencyApplication(Configuration);
             services.AddServiceDependencyInfrastructure();
             services.AddServiceDependencyJrFramework();
-
-            services.AddMvc().AddFluentValidation(fvc =>
-                            fvc.RegisterValidatorsFromAssemblyContaining<DocumentosValidation>());
+            services.AddServiceDependencyJrSecurityApi();
         }
 
         /// <inheritdoc/>
@@ -71,7 +100,7 @@ namespace Jr.Backend.Pessoa.Api
             app.UseHttpsRedirection();
 
             app.UseRouting();
-
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

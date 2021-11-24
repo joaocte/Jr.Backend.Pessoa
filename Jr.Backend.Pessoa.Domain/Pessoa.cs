@@ -15,7 +15,7 @@ namespace Jr.Backend.Pessoa.Domain
             NomeCompleto = nomeCompleto;
             Enderecos = enderecos;
             Documentos = documentos;
-
+            Id = Guid.NewGuid();
             this.Validate(this, new PessoaValidation());
         }
 
