@@ -10,7 +10,6 @@ using Microsoft.AspNetCore.Mvc.Versioning;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.OpenApi.Models;
 
 namespace Jr.Backend.Pessoa.Api
 {
@@ -48,38 +47,6 @@ namespace Jr.Backend.Pessoa.Api
                 options.SubstituteApiVersionInUrl = true;
             });
             services.ConfigureOptions<ConfigureSwaggerOptions>();
-
-            #region Swagger
-
-            services.AddSwaggerGen(c =>
-            {
-                c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
-                {
-                    Description = "Input token like: Bearer {token}",
-                    Name = "Authorization",
-                    Scheme = "Bearer",
-                    BearerFormat = "JWT",
-                    In = ParameterLocation.Header,
-                    Type = SecuritySchemeType.ApiKey
-                });
-
-                c.AddSecurityRequirement(new OpenApiSecurityRequirement
-                {
-                    {
-                        new OpenApiSecurityScheme
-                        {
-                            Reference = new OpenApiReference
-                            {
-                                Type = ReferenceType.SecurityScheme,
-                                Id = "Bearer"
-                            }
-                        },
-                        new string[] {}
-                    }
-                });
-            });
-
-            #endregion Swagger
 
             services.AddServiceDependencyApplication(Configuration);
             services.AddServiceDependencyInfrastructure();
