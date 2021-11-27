@@ -1,7 +1,10 @@
 using Jr.Backend.Libs.API.Abstractions;
 using Jr.Backend.Libs.API.DependencyInjection;
 using Jr.Backend.Libs.Framework.DependencyInjection;
+using Jr.Backend.Libs.Security.Abstractions.Infrastructure.Interfaces;
 using Jr.Backend.Libs.Security.DependencyInjection;
+using Jr.Backend.Libs.Security.Infrastructure;
+using Jr.Backend.Libs.Security.Middleware;
 using Jr.Backend.Pessoa.Application.DependencyInjection;
 using Jr.Backend.Pessoa.Infrastructure.DependencyInjection;
 using Microsoft.AspNetCore.Builder;
@@ -15,7 +18,8 @@ namespace Jr.Backend.Pessoa.Api
     /// <inheritdoc/>
     public class Startup
     {
-        private readonly JrApiOption jrApiOption;
+        private readonly IJrApiOption jrApiOption;
+        private readonly ISecurityConfiguration serSecurityConfiguration;
 
         /// <inheritdoc/>
         public Startup(IConfiguration configuration)
@@ -28,6 +32,8 @@ namespace Jr.Backend.Pessoa.Api
                 Email = "joaocte@gmail.com",
                 Uri = "https://github.com/joaocte/Jr.Backend.Pessoa",
             };
+            serSecurityConfiguration =
+                new SecurityConfiguration("mongodb://localhost:27017/?authSource=admin", "JrTenant");
         }
 
         /// <inheritdoc/>
@@ -37,11 +43,11 @@ namespace Jr.Backend.Pessoa.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddServiceDependencyJrSecurityApi();
             services.AddServiceDependencyJrApiSwagger(Configuration, () => jrApiOption);
             services.AddServiceDependencyApplication(Configuration);
             services.AddServiceDependencyInfrastructure();
             services.AddServiceDependencyJrFramework();
+            services.AddServiceDependencyJrSecurityApiUsingCustomValidate(() => serSecurityConfiguration);
         }
 
         /// <inheritdoc/>
@@ -53,6 +59,7 @@ namespace Jr.Backend.Pessoa.Api
             }
 
             app.UseJrApiSwaggerSecurity(env, () => jrApiOption);
+            app.UseSecurity();
 
             app.UseEndpoints(endpoints =>
             {
