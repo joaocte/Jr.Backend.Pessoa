@@ -1,10 +1,9 @@
-﻿using Jror.Backend.Libs.Domain.Abstractions.ValueObject;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Text.Json.Serialization;
 
 namespace Jr.Backend.Pessoa.Domain.ValueObject
 {
-    public class Endereco : GenericValueObject
+    public class Endereco : Jror.Backend.Libs.Domain.Abstractions.ValueObject.ValueObject
     {
         public string Logradouro { get; }
         public string Bairro { get; }

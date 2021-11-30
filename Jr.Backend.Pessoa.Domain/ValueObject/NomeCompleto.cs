@@ -1,10 +1,9 @@
-﻿using Jror.Backend.Libs.Domain.Abstractions.ValueObject;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Text.Json.Serialization;
 
 namespace Jr.Backend.Pessoa.Domain.ValueObject
 {
-    public class NomeCompleto : GenericValueObject
+    public class NomeCompleto : Jror.Backend.Libs.Domain.Abstractions.ValueObject.ValueObject
     {
         public string Nome { get; }
         public string Sobrenome { get; }
