@@ -7,9 +7,9 @@
 	<ItemGroup>
 		<PackageReference Include="AspNetCore.IQueryable.Extensions" Version="5.0.2" />
 		<PackageReference Include="FluentValidation" Version="10.3.4" />
-		<PackageReference Include="Jror.Backend.Libs.Domain" Version="1.0.4" />
-		<PackageReference Include="Jror.Backend.Libs.Domain.Abstractions" Version="1.0.4" />
-		<PackageReference Include="Jror.Backend.Libs.Domain.Core" Version="1.0.4" />
+		<PackageReference Include="Jror.Backend.Libs.Domain" Version="1.0.5" />
+		<PackageReference Include="Jror.Backend.Libs.Domain.Abstractions" Version="1.0.5" />
+		<PackageReference Include="Jror.Backend.Libs.Domain.Core" Version="1.0.5" />
 		<PackageReference Include="MediatR" Version="9.0.0" />
 		<PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="6.0.0" />
 		<PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="6.0.0" />
