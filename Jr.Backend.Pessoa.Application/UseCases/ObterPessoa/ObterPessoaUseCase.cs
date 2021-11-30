@@ -1,8 +1,8 @@
-﻿using AutoMapper;
-using Jr.Backend.Libs.Domain.Abstractions.Exceptions;
-using Jr.Backend.Libs.Extensions;
+﻿using AspNetCore.IQueryable.Extensions;
+using AutoMapper;
 using Jr.Backend.Pessoa.Domain.Commands.Requests;
 using Jr.Backend.Pessoa.Infrastructure.Interfaces;
+using Jror.Backend.Libs.Domain.Abstractions.Exceptions;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;

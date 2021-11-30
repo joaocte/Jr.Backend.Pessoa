@@ -1,5 +1,5 @@
-﻿using Jr.Backend.Libs.Extensions.Pagination;
-using Jr.Backend.Libs.Extensions.Sort;
+﻿using AspNetCore.IQueryable.Extensions.Pagination;
+using AspNetCore.IQueryable.Extensions.Sort;
 using MediatR;
 using System;
 using System.Collections.Generic;

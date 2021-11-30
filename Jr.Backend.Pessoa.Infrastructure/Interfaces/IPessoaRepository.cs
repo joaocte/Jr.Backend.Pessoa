@@ -1,4 +1,4 @@
-﻿using Jr.Backend.Libs.Domain.Abstractions.Interfaces.Repository;
+﻿using Jror.Backend.Libs.Infrastructure.Data.Shared.Interfaces;
 using System.Threading;
 using System.Threading.Tasks;
 

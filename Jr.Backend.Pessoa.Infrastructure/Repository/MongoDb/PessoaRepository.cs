@@ -1,6 +1,6 @@
-﻿using Jr.Backend.Libs.Infrastructure.MongoDB.Abstractions.Interfaces;
-using Jr.Backend.Libs.Infrastructure.MongoDB.Repository;
-using Jr.Backend.Pessoa.Infrastructure.Interfaces;
+﻿using Jr.Backend.Pessoa.Infrastructure.Interfaces;
+using Jror.Backend.Libs.Infrastructure.MongoDB.Abstractions.Interfaces;
+using Jror.Backend.Libs.Infrastructure.MongoDB.Repository;
 using MongoDB.Driver;
 using System.Threading;
 using System.Threading.Tasks;

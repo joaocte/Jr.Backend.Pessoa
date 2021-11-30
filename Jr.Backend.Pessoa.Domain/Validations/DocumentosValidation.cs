@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
-using Jr.Backend.Libs.Domain.Core.Validations;
 using Jr.Backend.Pessoa.Domain.ValueObject;
+using Jror.Backend.Libs.Domain.Core.Validations;
 
 namespace Jr.Backend.Pessoa.Domain.Validations
 {

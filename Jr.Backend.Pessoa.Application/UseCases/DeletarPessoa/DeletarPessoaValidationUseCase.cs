@@ -1,6 +1,6 @@
-﻿using Jr.Backend.Libs.Domain.Abstractions.Exceptions;
-using Jr.Backend.Pessoa.Domain.Commands.Requests;
+﻿using Jr.Backend.Pessoa.Domain.Commands.Requests;
 using Jr.Backend.Pessoa.Infrastructure.Interfaces;
+using Jror.Backend.Libs.Domain.Abstractions.Exceptions;
 using System.Threading.Tasks;
 
 namespace Jr.Backend.Pessoa.Application.UseCases.DeletarPessoa

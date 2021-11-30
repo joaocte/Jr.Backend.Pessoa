@@ -1,8 +1,9 @@
 ﻿using AutoMapper;
-using Jr.Backend.Libs.Domain.Abstractions.Interfaces.Repository;
+using Jr.Backend.Message.Events.Pessoa.Evemts;
 using Jr.Backend.Pessoa.Domain.Commands.Requests;
 using Jr.Backend.Pessoa.Domain.Commands.Responses;
 using Jr.Backend.Pessoa.Infrastructure.Interfaces;
+using Jror.Backend.Libs.Infrastructure.Data.Shared.Interfaces;
 using MassTransit;
 using System.Threading.Tasks;
 
@@ -33,9 +34,9 @@ namespace Jr.Backend.Pessoa.Application.UseCases.AtualizarPessoa
 
             await unitOfWork.CommitAsync();
 
-            //PessoaAtualizadaEvent @event = mapper.Map<PessoaAtualizadaEvent>(pessoaEntity);
+            PessoaAtualizadaEvent @event = mapper.Map<PessoaAtualizadaEvent>(pessoaEntity);
 
-            //await bus.Publish(@event);
+            await bus.Publish(@event);
 
             var pessoa = mapper.Map<Domain.Pessoa>(pessoaEntity);
 

@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
-using Jr.Backend.Libs.Domain.Abstractions.Interfaces.Repository;
 using Jr.Backend.Pessoa.Domain.Commands.Requests;
 using Jr.Backend.Pessoa.Infrastructure.Interfaces;
+using Jror.Backend.Libs.Infrastructure.Data.Shared.Interfaces;
 using MassTransit;
 using System.Threading.Tasks;
 

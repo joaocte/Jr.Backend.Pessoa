@@ -1,12 +1,13 @@
-using Jr.Backend.Libs.API.Abstractions;
-using Jr.Backend.Libs.API.DependencyInjection;
-using Jr.Backend.Libs.Framework.DependencyInjection;
-using Jr.Backend.Libs.Security.Abstractions.Infrastructure.Interfaces;
-using Jr.Backend.Libs.Security.DependencyInjection;
-using Jr.Backend.Libs.Security.Infrastructure;
-using Jr.Backend.Libs.Security.Middleware;
 using Jr.Backend.Pessoa.Application.DependencyInjection;
 using Jr.Backend.Pessoa.Infrastructure.DependencyInjection;
+using Jror.Backend.Libs.Api.DependencyInjection;
+using Jror.Backend.Libs.API.Abstractions;
+using Jror.Backend.Libs.API.Abstractions.Interface;
+using Jror.Backend.Libs.Framework.DependencyInjection;
+using Jror.Backend.Libs.Security.Abstractions.Infrastructure.Interfaces;
+using Jror.Backend.Libs.Security.DependencyInjection;
+using Jror.Backend.Libs.Security.Infrastructure;
+using Jror.Backend.Libs.Security.Middleware;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -18,14 +19,14 @@ namespace Jr.Backend.Pessoa.Api
     /// <inheritdoc/>
     public class Startup
     {
-        private readonly IJrApiOption jrApiOption;
+        private readonly IJrorApiOption jrApiOption;
         private readonly ISecurityConfiguration serSecurityConfiguration;
 
         /// <inheritdoc/>
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
-            jrApiOption = new JrApiOption
+            jrApiOption = new JrorApiOption
             {
                 Title = "Jr.Backend.Pessoa.Api",
                 Description = "Api de Cadastro de Pessoas",
@@ -43,11 +44,11 @@ namespace Jr.Backend.Pessoa.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddServiceDependencyJrApiSwagger(Configuration, () => jrApiOption);
+            services.AddServiceDependencyJrorApiSwagger(Configuration, () => jrApiOption);
             services.AddServiceDependencyApplication(Configuration);
             services.AddServiceDependencyInfrastructure();
-            services.AddServiceDependencyJrFramework();
-            services.AddServiceDependencyJrSecurityApiUsingCustomValidate(() => serSecurityConfiguration);
+            services.AddServiceDependencyJrorFramework();
+            services.AddServiceDependencyJrorSecurityApiUsingCustomValidate(() => serSecurityConfiguration);
         }
 
         /// <inheritdoc/>
@@ -58,7 +59,7 @@ namespace Jr.Backend.Pessoa.Api
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseJrApiSwaggerSecurity(env, () => jrApiOption);
+            app.UseJrorApiSwaggerSecurity(env, () => jrApiOption);
             app.UseSecurity();
 
             app.UseEndpoints(endpoints =>

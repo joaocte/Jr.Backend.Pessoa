@@ -1,4 +1,4 @@
-﻿using Jr.Backend.Libs.Domain.Abstractions.ValueObject;
+﻿using Jror.Backend.Libs.Domain.Abstractions.ValueObject;
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
 
