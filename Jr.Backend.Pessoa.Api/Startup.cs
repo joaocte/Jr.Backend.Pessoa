@@ -7,7 +7,6 @@ using Jror.Backend.Libs.Framework.DependencyInjection;
 using Jror.Backend.Libs.Security.Abstractions.Infrastructure.Interfaces;
 using Jror.Backend.Libs.Security.DependencyInjection;
 using Jror.Backend.Libs.Security.Infrastructure;
-using Jror.Backend.Libs.Security.Middleware;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -46,7 +45,7 @@ namespace Jr.Backend.Pessoa.Api
             services.AddControllers();
             services.AddServiceDependencyJrorApiSwagger(Configuration, () => jrApiOption);
             services.AddServiceDependencyApplication(Configuration);
-            services.AddServiceDependencyInfrastructure();
+            services.AddServiceDependencyInfrastructure(Configuration);
             services.AddServiceDependencyJrorFramework();
             services.AddServiceDependencyJrorSecurityApiUsingCustomValidate(() => serSecurityConfiguration);
         }
@@ -60,7 +59,7 @@ namespace Jr.Backend.Pessoa.Api
             }
 
             app.UseJrorApiSwaggerSecurity(env, () => jrApiOption);
-            app.UseSecurity();
+            //app.UseSecurity();
 
             app.UseEndpoints(endpoints =>
             {

@@ -1,7 +1,6 @@
 ﻿using Jr.Backend.Pessoa.Domain.Commands.Requests;
 using Jr.Backend.Pessoa.Domain.Commands.Responses;
 using MediatR;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -15,14 +14,21 @@ namespace Jr.Backend.Pessoa.Api.Controllers.V1
     [Route("api/[controller]")]
     [ApiController]
     [ApiVersion("1.0")]
-    [Authorize]
     public class PessoaController : ControllerBase
     {
         // GET api/<PessoaController>/5
         [HttpGet]
         public async Task<IEnumerable<Domain.Pessoa>> Get([FromServices] IMediator mediator, [FromQuery] ObterPessoaPorIdRequest request)
         {
-            return await mediator.Send(request);
+            try
+            {
+                return await mediator.Send(request);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
         }
 
         // POST api/<PessoaController>

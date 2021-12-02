@@ -5,10 +5,19 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Jror.Backend.Libs.Infrastructure.Data.Shared" Version="1.0.5" />
-		<PackageReference Include="Jror.Backend.Libs.Infrastructure.MongoDB" Version="1.0.5" />
-		<PackageReference Include="Jror.Backend.Libs.Infrastructure.MongoDB.Abstractions" Version="1.0.5" />
-		<PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="5.0.0" />
+		<PackageReference Include="Jror.Backend.Libs.Infrastructure.Data.Shared" Version="1.0.7" />
+		<PackageReference Include="Jror.Backend.Libs.Infrastructure.EntityFramework" Version="1.0.7" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.12">
+		  <PrivateAssets>all</PrivateAssets>
+		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="5.0.12" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.12" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.12">
+		  <PrivateAssets>all</PrivateAssets>
+		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="6.0.0" />
 		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
 		<PackageReference Include="MongoDB.Driver" Version="2.12.4" />
 		<PackageReference Include="ServiceStack.Common" Version="5.11.0" />

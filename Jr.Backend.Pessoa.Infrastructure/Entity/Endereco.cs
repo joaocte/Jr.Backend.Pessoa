@@ -1,7 +1,13 @@
-﻿namespace Jr.Backend.Pessoa.Infrastructure.Entity
+﻿using System;
+using System.ComponentModel.DataAnnotations;
+
+namespace Jr.Backend.Pessoa.Infrastructure.Entity
 {
     public class Endereco
     {
+        [Key]
+        public Guid Id { get; set; }
+
         public string Logradouro { get; set; }
         public string Bairro { get; set; }
         public string Numero { get; set; }

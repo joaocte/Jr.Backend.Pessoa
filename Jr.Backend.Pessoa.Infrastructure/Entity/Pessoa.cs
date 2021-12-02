@@ -1,16 +1,16 @@
-﻿using MongoDB.Bson.Serialization.Attributes;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace Jr.Backend.Pessoa.Infrastructure.Entity
 {
     public class Pessoa
     {
-        [BsonId]
+        [Key]
         public string Id { get; set; }
 
         public NomeCompleto NomeCompleto { get; set; }
 
-        public IList<Endereco> Enderecos { get; set; }
+        public virtual IList<Endereco> Enderecos { get; set; }
 
         public Documentos Documentos { get; set; }
     }
