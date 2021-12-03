@@ -11,12 +11,16 @@
 	<ItemGroup>
 		<PackageReference Include="FluentValidation.AspNetCore" Version="10.3.5" />
 		<PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="10.3.5" />
-		<PackageReference Include="Jror.Backend.Libs.Api" Version="1.0.7" />
-		<PackageReference Include="Jror.Backend.Libs.Framework" Version="1.0.7" />
-		<PackageReference Include="Jror.Backend.Libs.Security" Version="1.0.6" />
+		<PackageReference Include="Jror.Backend.Libs.Api" Version="1.0.8" />
+		<PackageReference Include="Jror.Backend.Libs.Framework" Version="1.0.8" />
+		<PackageReference Include="Jror.Backend.Libs.Security" Version="1.0.8" />
 		<PackageReference Include="MediatR" Version="9.0.0" />
 		<PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="9.0.0" />
 		<PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="5.0.0" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.12">
+		  <PrivateAssets>all</PrivateAssets>
+		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
 		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
 		<PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer" Version="5.0.0" />
 	</ItemGroup>

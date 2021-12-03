@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Jr.Backend.Pessoa.Infrastructure
 {
-    public class ApplicationDbContext : DbContext
+    public sealed class ApplicationDbContext : DbContext
     {
         public DbSet<Endereco> Enderecos { get; set; }
         public DbSet<Entity.Pessoa> Pessoas { get; set; }
@@ -11,6 +11,7 @@ namespace Jr.Backend.Pessoa.Infrastructure
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
+            this.Database.EnsureCreated();
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

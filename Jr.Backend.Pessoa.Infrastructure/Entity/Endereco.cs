@@ -5,6 +5,11 @@ namespace Jr.Backend.Pessoa.Infrastructure.Entity
 {
     public class Endereco
     {
+        public Endereco()
+        {
+            Id = Guid.NewGuid();
+        }
+
         [Key]
         public Guid Id { get; set; }
 

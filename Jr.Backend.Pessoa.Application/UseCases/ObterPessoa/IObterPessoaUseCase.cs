@@ -7,6 +7,6 @@ namespace Jr.Backend.Pessoa.Application.UseCases.ObterPessoa
 {
     public interface IObterPessoaUseCase : IDisposable
     {
-        Task<IEnumerable<Domain.Pessoa>> ExecuteAsync(ObterPessoaPorIdRequest cadastrarPessoaRequest);
+        Task<IEnumerable<Domain.Pessoa>> ExecuteAsync(ObterPessoaPorIdRequest obterPessoaPorIdRequest);
     }
 }

@@ -40,7 +40,7 @@ namespace Jr.Backend.Pessoa.Application.UseCases.AtualizarPessoa
 
             var pessoa = mapper.Map<Domain.Pessoa>(pessoaEntity);
 
-            return new AtualizarPessoaResponse(pessoa.NomeCompleto, pessoa.Enderecos, pessoa.Documentos);
+            return new AtualizarPessoaResponse(pessoa.Nome, pessoa.Sobrenome, pessoa.Enderecos, pessoa.Cpf, pessoa.Rg, pessoa.TituloEleitoral);
         }
 
         protected virtual void Dispose(bool disposing)

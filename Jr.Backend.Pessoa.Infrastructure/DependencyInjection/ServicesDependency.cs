@@ -13,12 +13,14 @@ namespace Jr.Backend.Pessoa.Infrastructure.DependencyInjection
         {
             services.AddDbContext<ApplicationDbContext>(options =>
             {
-                options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
+                var connectionString = configuration.GetConnectionString("DefaultConnection");
+                options.UseSqlServer(connectionString);
             });
             services.AddScoped<DbContext, ApplicationDbContext>();
             services.AddServiceDependencyJrorInfrastructureEntityFramework();
 
             services.AddScoped<IPessoaRepository>(x => new PessoaRepository(x.GetService<ApplicationDbContext>()));
+            services.AddScoped<IEnderecoRepository>(x => new EnderecoRepository(x.GetService<ApplicationDbContext>()));
         }
     }
 }

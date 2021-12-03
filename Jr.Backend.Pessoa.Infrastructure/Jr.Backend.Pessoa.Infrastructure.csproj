@@ -5,8 +5,8 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Jror.Backend.Libs.Infrastructure.Data.Shared" Version="1.0.7" />
-		<PackageReference Include="Jror.Backend.Libs.Infrastructure.EntityFramework" Version="1.0.7" />
+		<PackageReference Include="Jror.Backend.Libs.Infrastructure.Data.Shared" Version="1.0.8" />
+		<PackageReference Include="Jror.Backend.Libs.Infrastructure.EntityFramework" Version="1.0.8" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.12">
 		  <PrivateAssets>all</PrivateAssets>
 		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -27,7 +27,7 @@
 		<PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions" Version="6.0.0" />
 		<PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="6.0.0" />
 		<PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="6.0.0" />
-		<PackageReference Include="MongoDB.Driver" Version="2.14.0" />
+		<PackageReference Include="MongoDB.Driver" Version="2.14.1" />
 		<PackageReference Include="ServiceStack.Common" Version="5.13.2" />
 		<PackageReference Include="System.Configuration.ConfigurationManager" Version="6.0.0" />
 	</ItemGroup>

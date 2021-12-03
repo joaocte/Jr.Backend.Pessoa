@@ -31,12 +31,12 @@ namespace Jr.Backend.Pessoa.Application.UseCases.AtualizarPessoa
                 notificationContext.AddNotifications(pessoa.ValidationResult);
                 return default;
             }
-            var pessoaJaCadastrada = await pessoaRepository.ExistsAsync(atualizarPessoaRequest.Documentos.Cpf)
+            var pessoaJaCadastrada = await pessoaRepository.ExistsAsync(atualizarPessoaRequest.Cpf)
                                      && await pessoaRepository.ExistsAsync(atualizarPessoaRequest.Id);
 
             if (!pessoaJaCadastrada)
                 throw new NotFoundException(
-                    $"Cpf {atualizarPessoaRequest.Documentos.Cpf} ou Id {atualizarPessoaRequest.Id} Não encontrado!");
+                    $"Cpf {atualizarPessoaRequest.Cpf} ou Id {atualizarPessoaRequest.Id} Não encontrado!");
 
             return await atualizarPessoaUseCase.ExecuteAsync(atualizarPessoaRequest);
         }

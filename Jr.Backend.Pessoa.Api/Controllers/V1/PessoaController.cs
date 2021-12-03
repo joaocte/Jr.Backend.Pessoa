@@ -20,15 +20,7 @@ namespace Jr.Backend.Pessoa.Api.Controllers.V1
         [HttpGet]
         public async Task<IEnumerable<Domain.Pessoa>> Get([FromServices] IMediator mediator, [FromQuery] ObterPessoaPorIdRequest request)
         {
-            try
-            {
-                return await mediator.Send(request);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                throw;
-            }
+            return await mediator.Send(request);
         }
 
         // POST api/<PessoaController>
@@ -51,7 +43,15 @@ namespace Jr.Backend.Pessoa.Api.Controllers.V1
         public async Task<AtualizarPessoaResponse> Put(Guid id, [FromBody] PessoaResquest request, [FromServices] IMediator mediator)
         {
             AtualizarPessoaRequest command = new()
-            { Documentos = request.Documentos, Enderecos = request.Enderecos, Id = id, NomeCompleto = request.NomeCompleto };
+            {
+                Enderecos = request.Enderecos,
+                Cpf = request.Cpf,
+                Nome = request.Nome,
+                Id = id,
+                TituloEleitoral = request.TituloEleitoral,
+                Rg = request.Rg,
+                Sobrenome = request.Sobrenome
+            };
 
             return await mediator.Send(command);
         }

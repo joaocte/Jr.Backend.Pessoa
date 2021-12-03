@@ -31,10 +31,10 @@ namespace Jr.Backend.Pessoa.Application.UseCases.CadastrarPessoa
                 return default;
             }
 
-            var pessoaJaCadastrada = await pessoaRepository.ExistsAsync(cadastrarPessoaRequest.Documentos.Cpf);
+            var pessoaJaCadastrada = await pessoaRepository.ExistsAsync(x => x.Cpf == pessoa.Cpf);
 
             if (pessoaJaCadastrada)
-                throw new AlreadyRegisteredException($"Cpf {cadastrarPessoaRequest.Documentos.Cpf} Já cadastrado!");
+                throw new AlreadyRegisteredException($"Cpf {cadastrarPessoaRequest.Cpf} Já cadastrado!");
 
             return await cadastrarPessoaUseCase.ExecuteAsync(cadastrarPessoaRequest);
         }

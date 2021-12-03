@@ -7,7 +7,7 @@ namespace Jr.Backend.Pessoa.Domain.Commands.Requests
     {
         public Pessoa Convert()
         {
-            return new Pessoa(NomeCompleto, Enderecos, Documentos);
+            return new Pessoa(Nome, Sobrenome, Enderecos, Cpf, Rg, TituloEleitoral);
         }
     }
 }

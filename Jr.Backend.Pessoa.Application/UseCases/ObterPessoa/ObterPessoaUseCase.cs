@@ -21,11 +21,11 @@ namespace Jr.Backend.Pessoa.Application.UseCases.ObterPessoa
             this.pessoaRepository = pessoaRepository;
         }
 
-        public async Task<IEnumerable<Domain.Pessoa>> ExecuteAsync(ObterPessoaPorIdRequest cadastrarPessoaRequest)
+        public async Task<IEnumerable<Domain.Pessoa>> ExecuteAsync(ObterPessoaPorIdRequest obterPessoaPorIdRequest)
         {
             var pessoasQueryable = await pessoaRepository.GetAllAsQueryableAsync();
 
-            var pessoasEntity = pessoasQueryable.Apply(cadastrarPessoaRequest).ToList();
+            var pessoasEntity = pessoasQueryable.Apply(obterPessoaPorIdRequest).ToList();
 
             if ((bool)!pessoasEntity?.Any())
                 throw new NotFoundException($"Não foi encontrado uma pessoa para consulta informada.");
