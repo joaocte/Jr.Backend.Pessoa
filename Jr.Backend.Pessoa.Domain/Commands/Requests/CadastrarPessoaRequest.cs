@@ -5,9 +5,5 @@ namespace Jr.Backend.Pessoa.Domain.Commands.Requests
 {
     public class CadastrarPessoaRequest : PessoaResquest, IRequest<CadastrarPessoaRespose>
     {
-        public Pessoa Convert()
-        {
-            return new Pessoa(NomeCompleto, Enderecos, Documentos);
-        }
     }
 }

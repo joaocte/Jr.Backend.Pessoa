@@ -7,7 +7,7 @@ namespace Jr.Backend.Pessoa.Domain.Commands.Responses
     public class AtualizarPessoaResponse : Pessoa
     {
         [JsonConstructor]
-        public AtualizarPessoaResponse(NomeCompleto nomeCompleto, IList<Endereco> enderecos, Documentos documentos) : base(nomeCompleto, enderecos, documentos)
+        public AtualizarPessoaResponse(string nome, string sobrenome, IList<Endereco> enderecos, string cpf, string rg, string tituloEleitoral) : base(nome, sobrenome, enderecos, cpf, rg, tituloEleitoral)
         {
         }
     }

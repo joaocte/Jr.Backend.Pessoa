@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
-using Jr.Backend.Message.Events.Pessoa.Evemts;
 using Jr.Backend.Pessoa.Domain.Commands.Requests;
 using Jr.Backend.Pessoa.Domain.Commands.Responses;
 using Jr.Backend.Pessoa.Infrastructure.Interfaces;
 using Jror.Backend.Libs.Infrastructure.Data.Shared.Interfaces;
+using Jror.Backend.Message.Events.Pessoa.Events;
 using MassTransit;
 using System.Threading.Tasks;
 
@@ -40,7 +40,7 @@ namespace Jr.Backend.Pessoa.Application.UseCases.AtualizarPessoa
 
             var pessoa = mapper.Map<Domain.Pessoa>(pessoaEntity);
 
-            return new AtualizarPessoaResponse(pessoa.NomeCompleto, pessoa.Enderecos, pessoa.Documentos);
+            return new AtualizarPessoaResponse(pessoa.Nome, pessoa.Sobrenome, pessoa.Enderecos, pessoa.Cpf, pessoa.Rg, pessoa.TituloEleitoral);
         }
 
         protected virtual void Dispose(bool disposing)

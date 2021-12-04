@@ -60,7 +60,7 @@ namespace Jr.Backend.Pessoa.Api
             }
 
             app.UseJrorApiSwaggerSecurity(env, () => jrApiOption);
-            app.UseSecurity();
+            //app.UseSecurity();
 
             app.UseEndpoints(endpoints =>
             {

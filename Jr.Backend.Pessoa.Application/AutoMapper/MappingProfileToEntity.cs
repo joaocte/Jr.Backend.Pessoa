@@ -9,10 +9,9 @@ namespace Jr.Backend.Pessoa.Application.AutoMapper
         public MappingProfileToEntity()
         {
             CreateMap<Endereco, Infrastructure.Entity.Endereco>();
-            CreateMap<Documentos, Infrastructure.Entity.Documentos>();
-            CreateMap<NomeCompleto, Infrastructure.Entity.NomeCompleto>();
             CreateMap<Domain.Pessoa, Infrastructure.Entity.Pessoa>();
             CreateMap<AtualizarPessoaRequest, Infrastructure.Entity.Pessoa>();
+            CreateMap<CadastrarPessoaRequest, Infrastructure.Entity.Pessoa>();
         }
     }
 }

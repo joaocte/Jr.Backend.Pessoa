@@ -1,4 +1,5 @@
-﻿using Jr.Backend.Pessoa.Domain.Commands.Requests;
+﻿using AutoMapper;
+using Jr.Backend.Pessoa.Domain.Commands.Requests;
 using Jr.Backend.Pessoa.Domain.Commands.Responses;
 using Jr.Backend.Pessoa.Infrastructure.Interfaces;
 using Jror.Backend.Libs.Domain.Abstractions.Exceptions;
@@ -13,17 +14,19 @@ namespace Jr.Backend.Pessoa.Application.UseCases.CadastrarPessoa
         private readonly ICadastrarPessoaUseCase cadastrarPessoaUseCase;
         private readonly IPessoaRepository pessoaRepository;
         private readonly INotificationContext notificationContext;
+        private readonly IMapper mapper;
 
-        public CadastrarPessoaValidationUseCase(ICadastrarPessoaUseCase cadastrarPessoaUseCase, IPessoaRepository pessoaRepository, INotificationContext notificationContext)
+        public CadastrarPessoaValidationUseCase(ICadastrarPessoaUseCase cadastrarPessoaUseCase, IPessoaRepository pessoaRepository, INotificationContext notificationContext, IMapper mapper)
         {
             this.cadastrarPessoaUseCase = cadastrarPessoaUseCase;
             this.pessoaRepository = pessoaRepository;
             this.notificationContext = notificationContext;
+            this.mapper = mapper;
         }
 
         public async Task<CadastrarPessoaRespose> ExecuteAsync(CadastrarPessoaRequest cadastrarPessoaRequest)
         {
-            var pessoa = cadastrarPessoaRequest.Convert();
+            var pessoa = mapper.Map<Domain.Pessoa>(cadastrarPessoaRequest);
 
             if (pessoa.Invalid)
             {
@@ -31,10 +34,10 @@ namespace Jr.Backend.Pessoa.Application.UseCases.CadastrarPessoa
                 return default;
             }
 
-            var pessoaJaCadastrada = await pessoaRepository.ExistsAsync(cadastrarPessoaRequest.Documentos.Cpf);
+            var pessoaJaCadastrada = await pessoaRepository.ExistsAsync(cadastrarPessoaRequest.Cpf);
 
             if (pessoaJaCadastrada)
-                throw new AlreadyRegisteredException($"Cpf {cadastrarPessoaRequest.Documentos.Cpf} Já cadastrado!");
+                throw new AlreadyRegisteredException($"Cpf {cadastrarPessoaRequest.Cpf} Já cadastrado!");
 
             return await cadastrarPessoaUseCase.ExecuteAsync(cadastrarPessoaRequest);
         }

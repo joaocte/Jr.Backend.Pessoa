@@ -10,24 +10,31 @@ namespace Jr.Backend.Pessoa.Domain
     public class Pessoa : Entity
     {
         [JsonConstructor]
-        public Pessoa(NomeCompleto nomeCompleto, IList<Endereco> enderecos, Documentos documentos)
+        public Pessoa(string nome, string sobrenome, IList<Endereco> enderecos, string cpf, string rg, string tituloEleitoral)
         {
-            NomeCompleto = nomeCompleto;
+            Nome = nome;
+            Sobrenome = sobrenome;
             Enderecos = enderecos;
-            Documentos = documentos;
+            Cpf = cpf;
+            Rg = rg;
+            TituloEleitoral = tituloEleitoral;
             Id = Guid.NewGuid();
-            this.Validate(this, new PessoaValidation());
+            Validate(this, new PessoaValidation());
         }
 
-        public Pessoa(Guid id, NomeCompleto nomeCompleto, IList<Endereco> enderecos, Documentos documentos) : this(nomeCompleto, enderecos, documentos)
+        public Pessoa(Guid id, string nome, string sobrenome, IList<Endereco> enderecos, string cpf, string rg, string tituloEleitoral) : this(nome, sobrenome, enderecos, cpf, rg, tituloEleitoral)
         {
             Id = id;
         }
 
-        public NomeCompleto NomeCompleto { get; }
+        public string Nome { get; }
+
+        public string Sobrenome { get; }
 
         public IList<Endereco> Enderecos { get; }
 
-        public Documentos Documentos { get; }
+        public string Cpf { get; }
+        public string Rg { get; }
+        public string TituloEleitoral { get; }
     }
 }

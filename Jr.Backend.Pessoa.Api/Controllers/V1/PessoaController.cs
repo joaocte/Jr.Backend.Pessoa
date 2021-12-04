@@ -1,7 +1,6 @@
 ﻿using Jr.Backend.Pessoa.Domain.Commands.Requests;
 using Jr.Backend.Pessoa.Domain.Commands.Responses;
 using MediatR;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -15,7 +14,7 @@ namespace Jr.Backend.Pessoa.Api.Controllers.V1
     [Route("api/[controller]")]
     [ApiController]
     [ApiVersion("1.0")]
-    [Authorize]
+    //[Authorize]
     public class PessoaController : ControllerBase
     {
         // GET api/<PessoaController>/5
@@ -45,7 +44,7 @@ namespace Jr.Backend.Pessoa.Api.Controllers.V1
         public async Task<AtualizarPessoaResponse> Put(Guid id, [FromBody] PessoaResquest request, [FromServices] IMediator mediator)
         {
             AtualizarPessoaRequest command = new()
-            { Documentos = request.Documentos, Enderecos = request.Enderecos, Id = id, NomeCompleto = request.NomeCompleto };
+            { Enderecos = request.Enderecos, Id = id, };
 
             return await mediator.Send(command);
         }

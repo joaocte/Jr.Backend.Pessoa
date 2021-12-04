@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
-using Jr.Backend.Message.Events.Pessoa.Evemts;
 using Jr.Backend.Pessoa.Domain.Commands.Requests;
 using Jr.Backend.Pessoa.Domain.Commands.Responses;
 using Jr.Backend.Pessoa.Infrastructure.Interfaces;
 using Jror.Backend.Libs.Extensions;
 using Jror.Backend.Libs.Infrastructure.Data.Shared.Interfaces;
+using Jror.Backend.Message.Events.Pessoa.Events;
 using MassTransit;
 using System.Threading.Tasks;
 
@@ -29,9 +29,7 @@ namespace Jr.Backend.Pessoa.Application.UseCases.CadastrarPessoa
 
         public async Task<CadastrarPessoaRespose> ExecuteAsync(CadastrarPessoaRequest cadastrarPessoaRequest)
         {
-            Domain.Pessoa pessoa = cadastrarPessoaRequest.Convert();
-
-            var pessoaEntity = mapper.Map<Infrastructure.Entity.Pessoa>(pessoa);
+            var pessoaEntity = mapper.Map<Infrastructure.Entity.Pessoa>(cadastrarPessoaRequest);
 
             var taskInsert = pessoaRepository.AddAsync(pessoaEntity);
 
