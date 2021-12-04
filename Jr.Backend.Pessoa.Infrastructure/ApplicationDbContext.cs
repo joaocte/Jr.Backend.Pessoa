@@ -1,4 +1,5 @@
 ﻿using Jr.Backend.Pessoa.Infrastructure.Entity;
+using Jr.Backend.Pessoa.Infrastructure.EntityConfiguration;
 using Microsoft.EntityFrameworkCore;
 
 namespace Jr.Backend.Pessoa.Infrastructure
@@ -11,14 +12,13 @@ namespace Jr.Backend.Pessoa.Infrastructure
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
-            this.Database.EnsureCreated();
+            //this.Database.EnsureCreated();
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Endereco>().HasOne(x => x.Pessoa)
-                .WithMany(x => x.Enderecos)
-                .HasForeignKey(x => x.PessoaId);
+            modelBuilder.ApplyConfiguration(new PessoaMap());
+            modelBuilder.ApplyConfiguration(new EnderecoMap());
             base.OnModelCreating(modelBuilder);
         }
 

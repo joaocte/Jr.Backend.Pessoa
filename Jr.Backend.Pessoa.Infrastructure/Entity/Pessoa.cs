@@ -12,7 +12,7 @@ namespace Jr.Backend.Pessoa.Infrastructure.Entity
         public string Nome { get; set; }
         public string Sobrenome { get; set; }
 
-        public virtual ICollection<Endereco> Enderecos { get; set; }
+        public ICollection<Endereco> Enderecos { get; set; }
 
         public string Cpf { get; set; }
         public string Rg { get; set; }

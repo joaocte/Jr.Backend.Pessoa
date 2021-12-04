@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Jr.Backend.Pessoa.Infrastructure.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class InitialDbChange : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -11,7 +11,7 @@ namespace Jr.Backend.Pessoa.Infrastructure.Migrations
                 name: "Pessoas",
                 columns: table => new
                 {
-                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Nome = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Sobrenome = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Cpf = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -36,7 +36,7 @@ namespace Jr.Backend.Pessoa.Infrastructure.Migrations
                     Pais = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Cep = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Complemento = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    PessoaId = table.Column<string>(type: "nvarchar(450)", nullable: true)
+                    PessoaId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -46,7 +46,7 @@ namespace Jr.Backend.Pessoa.Infrastructure.Migrations
                         column: x => x.PessoaId,
                         principalTable: "Pessoas",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(

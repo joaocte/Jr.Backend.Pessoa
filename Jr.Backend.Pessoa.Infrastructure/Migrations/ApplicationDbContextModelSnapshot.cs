@@ -13,6 +13,7 @@ namespace Jr.Backend.Pessoa.Infrastructure.Migrations
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
+#pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.12")
@@ -48,8 +49,8 @@ namespace Jr.Backend.Pessoa.Infrastructure.Migrations
                     b.Property<string>("Pais")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("PessoaId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<Guid>("PessoaId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
@@ -60,8 +61,9 @@ namespace Jr.Backend.Pessoa.Infrastructure.Migrations
 
             modelBuilder.Entity("Jr.Backend.Pessoa.Infrastructure.Entity.Pessoa", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Cpf")
                         .HasColumnType("nvarchar(max)");
@@ -85,15 +87,20 @@ namespace Jr.Backend.Pessoa.Infrastructure.Migrations
 
             modelBuilder.Entity("Jr.Backend.Pessoa.Infrastructure.Entity.Endereco", b =>
                 {
-                    b.HasOne("Jr.Backend.Pessoa.Infrastructure.Entity.Pessoa", null)
+                    b.HasOne("Jr.Backend.Pessoa.Infrastructure.Entity.Pessoa", "Pessoa")
                         .WithMany("Enderecos")
-                        .HasForeignKey("PessoaId");
+                        .HasForeignKey("PessoaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Pessoa");
                 });
 
             modelBuilder.Entity("Jr.Backend.Pessoa.Infrastructure.Entity.Pessoa", b =>
                 {
                     b.Navigation("Enderecos");
                 });
+#pragma warning restore 612, 618
         }
     }
 }
