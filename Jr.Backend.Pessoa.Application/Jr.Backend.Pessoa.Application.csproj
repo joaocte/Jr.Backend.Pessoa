@@ -7,8 +7,8 @@
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="10.1.1" />
     <PackageReference Include="Jror.Backend.Libs.Extensions" Version="1.1.1" />
-    <PackageReference Include="Jror.Backend.Message.Events" Version="1.0.2" />
-    <PackageReference Include="Jror.Backend.Message.Share" Version="1.0.2" />
+    <PackageReference Include="Jror.Backend.Message.Events" Version="1.0.3" />
+    <PackageReference Include="Jror.Backend.Message.Share" Version="1.0.3" />
     <PackageReference Include="MassTransit" Version="7.2.4" />
     <PackageReference Include="MassTransit.AspNetCore" Version="7.2.4" />
     <PackageReference Include="MassTransit.Extensions.DependencyInjection" Version="7.2.4" />
