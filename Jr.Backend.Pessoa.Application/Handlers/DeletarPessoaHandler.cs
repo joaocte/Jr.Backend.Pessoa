@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Jr.Backend.Pessoa.Application.Handlers
 {
-    public class DeletarPessoaHandler : IRequestHandler<DeletarPessoaRequest, bool>
+    public class DeletarPessoaHandler : IRequestHandler<DeletarPessoaRequest>
     {
         private readonly IDeletarPessoaUseCase deletarPessoaUseCase;
 
@@ -15,9 +15,9 @@ namespace Jr.Backend.Pessoa.Application.Handlers
             this.deletarPessoaUseCase = deletarPessoaUseCase;
         }
 
-        public Task<bool> Handle(DeletarPessoaRequest request, CancellationToken cancellationToken)
+        public async Task<Unit> Handle(DeletarPessoaRequest request, CancellationToken cancellationToken)
         {
-            return deletarPessoaUseCase.ExecuteAsync(request);
+            return await deletarPessoaUseCase.ExecuteAsync(request, cancellationToken);
         }
     }
 }

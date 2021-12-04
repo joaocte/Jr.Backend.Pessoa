@@ -1,9 +1,8 @@
 ﻿using AutoMapper;
-using Jr.Backend.Message.Events.Pessoa.Evemts;
 using Jr.Backend.Pessoa.Domain.Commands.Requests;
 using Jr.Backend.Pessoa.Domain.Commands.Responses;
 using Jr.Backend.Pessoa.Infrastructure.Interfaces;
-using Jror.Backend.Libs.Infrastructure.Data.Shared.Interfaces;
+using Jror.Backend.Message.Events.Pessoa.Events;
 using MassTransit;
 using System.Threading.Tasks;
 
@@ -13,14 +12,12 @@ namespace Jr.Backend.Pessoa.Application.UseCases.AtualizarPessoa
     {
         private bool disposedValue;
 
-        private readonly IUnitOfWork unitOfWork;
         private readonly IPessoaRepository pessoaRepository;
         private readonly IMapper mapper;
         private readonly IBus bus;
 
-        public AtualizarPessoaUseCase(IUnitOfWork unitOfWork, IPessoaRepository pessoaRepository, IMapper mapper, IBus bus)
+        public AtualizarPessoaUseCase(IPessoaRepository pessoaRepository, IMapper mapper, IBus bus)
         {
-            this.unitOfWork = unitOfWork;
             this.pessoaRepository = pessoaRepository;
             this.mapper = mapper;
             this.bus = bus;
@@ -31,8 +28,6 @@ namespace Jr.Backend.Pessoa.Application.UseCases.AtualizarPessoa
             var pessoaEntity = mapper.Map<Infrastructure.Entity.Pessoa>(atualizarPessoaRequest);
 
             await pessoaRepository.UpdateAsync(pessoaEntity);
-
-            await unitOfWork.CommitAsync();
 
             PessoaAtualizadaEvent @event = mapper.Map<PessoaAtualizadaEvent>(pessoaEntity);
 
@@ -50,7 +45,6 @@ namespace Jr.Backend.Pessoa.Application.UseCases.AtualizarPessoa
                 if (disposing)
                 {
                     pessoaRepository?.Dispose();
-                    unitOfWork?.Dispose();
                 }
 
                 disposedValue = true;

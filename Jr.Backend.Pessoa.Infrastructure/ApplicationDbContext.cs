@@ -16,6 +16,9 @@ namespace Jr.Backend.Pessoa.Infrastructure
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Endereco>().HasOne(x => x.Pessoa)
+                .WithMany(x => x.Enderecos)
+                .HasForeignKey(x => x.PessoaId);
             base.OnModelCreating(modelBuilder);
         }
 

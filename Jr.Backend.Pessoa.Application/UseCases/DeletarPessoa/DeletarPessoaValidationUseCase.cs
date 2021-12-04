@@ -1,6 +1,8 @@
 ﻿using Jr.Backend.Pessoa.Domain.Commands.Requests;
 using Jr.Backend.Pessoa.Infrastructure.Interfaces;
 using Jror.Backend.Libs.Domain.Abstractions.Exceptions;
+using MediatR;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Jr.Backend.Pessoa.Application.UseCases.DeletarPessoa
@@ -18,14 +20,14 @@ namespace Jr.Backend.Pessoa.Application.UseCases.DeletarPessoa
             this.deletarPessoaUseCase = deletarPessoaUseCase;
         }
 
-        public async Task<bool> ExecuteAsync(DeletarPessoaRequest deletarPessoaRequest)
+        public async Task<Unit> ExecuteAsync(DeletarPessoaRequest deletarPessoaRequest, CancellationToken cancellationToken = default)
         {
             var pessoaJaCadastrada = await pessoaRepository.ExistsAsync(deletarPessoaRequest.Id);
 
             if (!pessoaJaCadastrada)
                 throw new NotFoundException($"Id {deletarPessoaRequest.Id} Não encontrado!");
 
-            return await deletarPessoaUseCase.ExecuteAsync(deletarPessoaRequest);
+            return await deletarPessoaUseCase.ExecuteAsync(deletarPessoaRequest, cancellationToken);
         }
 
         protected virtual void Dispose(bool disposing)

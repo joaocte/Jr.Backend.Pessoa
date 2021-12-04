@@ -22,5 +22,7 @@ namespace Jr.Backend.Pessoa.Infrastructure.Entity
         public string Cep { get; set; }
 
         public string Complemento { get; set; }
+        public Guid PessoaId { get; set; }
+        public Pessoa Pessoa { get; set; }
     }
 }

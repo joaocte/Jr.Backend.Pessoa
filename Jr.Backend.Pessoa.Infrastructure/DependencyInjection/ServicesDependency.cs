@@ -16,7 +16,6 @@ namespace Jr.Backend.Pessoa.Infrastructure.DependencyInjection
                 var connectionString = configuration.GetConnectionString("DefaultConnection");
                 options.UseSqlServer(connectionString);
             });
-            services.AddScoped<DbContext, ApplicationDbContext>();
             services.AddServiceDependencyJrorInfrastructureEntityFramework();
 
             services.AddScoped<IPessoaRepository>(x => new PessoaRepository(x.GetService<ApplicationDbContext>()));

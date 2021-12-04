@@ -5,8 +5,8 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Jror.Backend.Libs.Infrastructure.Data.Shared" Version="1.0.8" />
-		<PackageReference Include="Jror.Backend.Libs.Infrastructure.EntityFramework" Version="1.0.8" />
+		<PackageReference Include="Jror.Backend.Libs.Infrastructure.Data.Shared" Version="1.1.1" />
+		<PackageReference Include="Jror.Backend.Libs.Infrastructure.EntityFramework" Version="1.1.1" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.12">
 		  <PrivateAssets>all</PrivateAssets>
 		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>

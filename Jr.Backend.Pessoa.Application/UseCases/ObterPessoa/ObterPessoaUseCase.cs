@@ -1,5 +1,4 @@
-﻿using AspNetCore.IQueryable.Extensions;
-using AutoMapper;
+﻿using AutoMapper;
 using Jr.Backend.Pessoa.Domain.Commands.Requests;
 using Jr.Backend.Pessoa.Infrastructure.Interfaces;
 using Jror.Backend.Libs.Domain.Abstractions.Exceptions;
@@ -23,14 +22,14 @@ namespace Jr.Backend.Pessoa.Application.UseCases.ObterPessoa
 
         public async Task<IEnumerable<Domain.Pessoa>> ExecuteAsync(ObterPessoaPorIdRequest obterPessoaPorIdRequest)
         {
-            var pessoasQueryable = await pessoaRepository.GetAllAsQueryableAsync();
+            var pessoasQueryable = await pessoaRepository.GetAllAsync();
 
-            var pessoasEntity = pessoasQueryable.Apply(obterPessoaPorIdRequest).ToList();
+            //var pessoasEntity = pessoasQueryable.Apply(obterPessoaPorIdRequest).ToList();
 
-            if ((bool)!pessoasEntity?.Any())
+            if (!pessoasQueryable.Any())
                 throw new NotFoundException($"Não foi encontrado uma pessoa para consulta informada.");
 
-            return mapper.Map<IEnumerable<Domain.Pessoa>>(pessoasEntity);
+            return mapper.Map<IEnumerable<Domain.Pessoa>>(pessoasQueryable);
         }
 
         protected virtual void Dispose(bool disposing)
