@@ -2,6 +2,7 @@
 using Jr.Backend.Pessoa.Domain.Commands.Requests;
 using Jr.Backend.Pessoa.Infrastructure.Interfaces;
 using Jror.Backend.Libs.Infrastructure.Data.Shared.Interfaces;
+using Jror.Backend.Message.Events.Pessoa.Events;
 using MassTransit;
 using System.Threading.Tasks;
 
@@ -31,9 +32,9 @@ namespace Jr.Backend.Pessoa.Application.UseCases.DeletarPessoa
 
             var commit = await unitOfWork.CommitAsync();
 
-            //var @event = mapper.Map<PessoaDeletadaEvent>(pessoa);
+            var @event = mapper.Map<PessoaDeletadaEvent>(pessoa);
 
-            //await bus.Publish(@event);
+            await bus.Publish(@event);
 
             return commit;
         }

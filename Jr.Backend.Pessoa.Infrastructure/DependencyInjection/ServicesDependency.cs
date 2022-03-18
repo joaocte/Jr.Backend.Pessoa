@@ -11,7 +11,7 @@ namespace Jr.Backend.Pessoa.Infrastructure.DependencyInjection
     {
         public static void AddServiceDependencyInfrastructure(this IServiceCollection services)
         {
-            services.AddServiceDependencyJrorInfrastructureMongoDb(ConnectionType.DirectConnection);
+            services.AddServiceDependencyJrorInfrastructureMongoDb(ConnectionType.ReplicaSet);
 
             services.AddScoped<IPessoaRepository>((p) =>
             {
