@@ -11,7 +11,7 @@ namespace Jr.Backend.Pessoa.Application.AutoMapper
             CreateMap<Infrastructure.Entity.Endereco, Endereco>();
             CreateMap<Infrastructure.Entity.Pessoa, PessoaCadastradaEvent>();
             CreateMap<Infrastructure.Entity.Pessoa, PessoaAtualizadaEvent>();
-            CreateMap<Domain.Pessoa, PessoaDeletadaEvent>();
+            CreateMap<Infrastructure.Entity.Pessoa, PessoaDeletadaEvent>();
         }
     }
 }
