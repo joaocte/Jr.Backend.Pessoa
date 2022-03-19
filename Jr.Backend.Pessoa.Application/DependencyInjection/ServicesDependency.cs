@@ -56,7 +56,6 @@ namespace Jr.Backend.Pessoa.Application.DependencyInjection
                 ));
             });
 
-            services.AddMassTransitHostedService();
         }
     }
 }
